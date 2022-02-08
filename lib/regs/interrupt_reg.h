@@ -16,6 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "memorymap.h"
 
 /* Interrupt vectors */
 #define TLI_ITN         0
@@ -40,17 +41,50 @@
 
 /* Interrupt registers */
 /* Software priority register n */
-#define ITC_SPR1    MMIO8(ITC_BASE + 0x00)
-#define ITC_SPR2    MMIO8(ITC_BASE + 0x01)
-#define ITC_SPR3    MMIO8(ITC_BASE + 0x02)
-#define ITC_SPR4    MMIO8(ITC_BASE + 0x03)
-#define ITC_SPR5    MMIO8(ITC_BASE + 0x04)
-#define ITC_SPR6    MMIO8(ITC_BASE + 0x05)
-#define ITC_SPR7    MMIO8(ITC_BASE + 0x06)
-#define ITC_SPR8    MMIO8(ITC_BASE + 0x07)
+#define ITC_SPR1    MMIO32(ITC_BASE + 0x00)
+#define VECT_3      6
+#define VECT_2      4
+#define VECT_1      2
+#define VECT_0      0
+#define ITC_SPR2    MMIO32(ITC_BASE + 0x01)
+#define VECT_7      6
+#define VECT_6      4
+#define VECT_5      2
+#define VECT_4      0
+#define ITC_SPR3    MMIO32(ITC_BASE + 0x02)
+#define VECT_11     6
+#define VECT_10     4
+#define VECT_9      2
+#define VECT_8      0
+#define ITC_SPR4    MMIO32(ITC_BASE + 0x03)
+#define VECT_15     6
+#define VECT_14     4
+#define VECT_13     2
+#define VECT_12     0
+#define ITC_SPR5    MMIO32(ITC_BASE + 0x04)
+#define VECT_19     6
+#define VECT_18     4
+#define VECT_17     2
+#define VECT_16     0
+#define ITC_SPR6    MMIO32(ITC_BASE + 0x05)
+#define VECT_23     6
+#define VECT_22     4
+#define VECT_21     2
+#define VECT_20     0
+#define ITC_SPR7    MMIO32(ITC_BASE + 0x06)
+#define VECT_27     6
+#define VECT_26     4
+#define VECT_25     2
+#define VECT_24     0
+#define ITC_SPR8    MMIO32(ITC_BASE + 0x07)
+#define VECT_29     2
+#define VECT_28     0
+#define ITC_SPR(n)  MMIO32(ITC_BASE + n)
+#define PRIORITY_MSK    0x3
+
 
 /* External interrupt control register 1 */
-#define EXTI_CR1    MMIO8(EXTI_BASE + 0x00)
+#define EXTI_CR1    MMIO32(EXTI_BASE + 0x00)
 // Port D external interrupt sensitivity bits
 #define PDIS_FALL_LOW   0x00
 #define PDIS_RISE       0x40
@@ -73,7 +107,7 @@
 #define PAIS_RISE_FALL  0x03
 
 /* External interrupt control register 2 */
-#define EXTI_CR2    MMIO8(EXTI_BASE + 0x01)
+#define EXTI_CR2    MMIO32(EXTI_BASE + 0x01)
 // Top level interrupt sensitivity
 #define TLIS            0x4
 // Port E external interrupt sensitivity bits

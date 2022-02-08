@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 
+#define  MMIO32(addr)		(*(volatile uint32_t *)(addr))
 
 #define PORTA_BASE  0x005000
 #define PORTB_BASE  0x005005
@@ -37,5 +38,8 @@
 #define TIM1_BASE   0x005250
 #define TIM2_BASE   0x005300
 #define TIM4_BASE   0x005340
-
 #define ADC1_BASE   0x0053e0
+#define CPU_BASE    0x007f00
+#define ITC_BASE    0x007f70
+#define SWIM_BASE   0x007f80
+#define DM_BASE     0x007f90
