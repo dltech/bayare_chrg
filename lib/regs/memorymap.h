@@ -1,3 +1,5 @@
+#ifndef H_MEMORYMAP
+#define H_MEMORYMAP
 /*
  * Part of old-school 8-bit transformer battery charger. STM8S003F3
  * memory addresses.
@@ -43,3 +45,5 @@
 #define ITC_BASE    0x007f70
 #define SWIM_BASE   0x007f80
 #define DM_BASE     0x007f90
+
+#endif

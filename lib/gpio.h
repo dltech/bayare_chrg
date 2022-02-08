@@ -1,8 +1,8 @@
-#ifndef H_INTERRUPT
-#define H_INTERRUPT
+#ifndef H_GPIO
+#define H_GPIO
 /*
  * Part of old-school 8-bit transformer battery charger.
- * File with implementation of STM8 interrupt functionality.
+ * All neccesary for GPIO using.
  *
  * Copyright 2022 Mikhail Belkin <dltech174@gmail.com>
  *
@@ -18,10 +18,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "regs/gpio_reg.h"
 
-#include "regs/interrupt_reg.h"
+enum gpios{
+    GPIOA = 0,
+    GPIOB,
+    GPIOC,
+    GPIOD,
+    GPIOE,
+    GPIOF
+};
+// get configuration here
+enum configs{
+    INPUT_FLOAT = 0,
+    INPUT_PULLUP,
+    INPUT_FLOAT_EXTI,
+    INPUT_PULLUP_EXTI,
+    OUTPUT_OD_2M,
+    OUTPUT_PP_2M,
+    OUTPUT_OD_10M,
+    OUTPUT_PP_10M
+};
 
-// set priority level of choosen interrupt
-void setPriority(uint8_t nInt, uint8_t level);
+void setPin(uint8_t port, uint8_t pin);
+void resetPin(uint8_t port, uint8_t pin);
+void readPin(uint8_t port, uint8_t pin);
+void portConfig(uint8_t port, uint8_t pin, uint8_t config);
 
 #endif

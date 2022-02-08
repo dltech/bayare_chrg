@@ -1,5 +1,7 @@
+#ifndef H_ADC_REG
+#define H_ADC_REG
 /*
- * Part of old-school 8-bit transformer battery charger. STM8 GPIO register
+ * Part of old-school 8-bit transformer battery charger. STM8 ADC register
  * definitions.
  *
  * Copyright 2022 Mikhail Belkin <dltech174@gmail.com>
@@ -16,3 +18,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+#include "memorymap.h"
+
+#define ADC1_DB0RH  MMIO32(ADC1_BASE + 0x00)
+#define ADC1_DB0RL  MMIO32(ADC1_BASE + 0x00)
+#define ADC1_DB7RH  MMIO32(ADC1_BASE + 0x0e)
+#define ADC1_DB7RL  MMIO32(ADC1_BASE + 0x0f)
+
+
+
+
+//
+#define
+//
+#define
