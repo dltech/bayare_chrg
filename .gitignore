@@ -1,0 +1,15 @@
+*.o
+*.d
+*.bin
+core
+bin
+
+.tags
+fp-info-cache
+*bak
+*.aux
+*.log
+*.out
+*.toc
+*.lst
+/vid
