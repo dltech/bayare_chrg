@@ -1,3 +1,5 @@
+#ifndef H_INTERRUPT_REG
+#define H_INTERRUPT_REG
 /*
  * Part of old-school 8-bit transformer battery charger. Interrupt vectors of
  * STM8.
@@ -116,4 +118,5 @@
 #define PEIS_FALL       0x2
 #define PEIS_RISE_FALL  0x3
 
+#endif
 //void ext_port_d(void) __interrupt(6)

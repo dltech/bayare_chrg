@@ -8,8 +8,8 @@ REG_DIR = lib/regs
 #sources
 MAIN_SRC = main.c
 SOURCES  = $(LIB_DIR)/gpio.c
-SOURCES += $(LIB_DIR)/timer.c
-SOURCES += $(LIB_DIR)/adc.c
+SOURCES += $(REG_DIR)/timer.c
+SOURCES += $(REG_DIR)/adc.c
 
 INCLUDES   = -I $(LIB_DIR)/
 INCLUDES  += -I $(REG_DIR)/

@@ -20,6 +20,8 @@
  */
 #include "memorymap.h"
 
+/*****************TIM1************************/
+
 /* Control register 1 */
 #define TIM1_CR1    MMIO32(TIM1_BASE + 0x00)
 // Auto-reload preload enable
@@ -466,5 +468,376 @@
 #define OIS1N   0x02
 // Output idle state 1 (OC1 output)
 #define OIS1    0x01
+
+/***************************TIM2/3/5***************************/
+
+/* Control register 1 */
+#define TIM2_CR1    MMIO32(TIM2_BASE + 0x00)
+#define TIM3_CR1    MMIO32(TIM3_BASE + 0x00)
+#define TIM5_CR1    MMIO32(TIM5_BASE + 0x00)
+// Auto-reload preload enable
+#define T2_ARPE    0x80
+// One-pulse mode
+#define T2_OPM     0x08
+// Update request source
+#define T2_URS     0x04
+// Update disable
+#define T2_UDIS    0x02
+// Counter enable
+#define T2_CEN     0x01
+
+/* Control register 2 */
+#define TIM5_CR2    MMIO32(TIM5_BASE + 0x01)
+// Master mode selection
+#define T5_MMS_ENABLE  0x10
+#define T5_MMS_RESET   0x00
+#define T5_MMS_UPDATE  0x20
+
+/* Slave mode control register */
+#define TIM5_SMCR   MMIO32(TIM5_BASE + 0x02)
+// Master/slave mode
+#define T5_MSM     0x80
+// Trigger selection
+#define TS_ITR0_TIM6 0x00
+#define TS_ITR1_TIM6 0x30
+// Clock/trigger/slave mode selection
+#define T5_SMS_DISABLE          0x00
+#define T5_SMS_RESET            0x04
+#define T5_SMS_TRIGGER_GATED    0x05
+#define T5_SMS_TRIGGER_STANDARD 0x06
+#define T5_SMS_EXTERNAL         0x07
+
+/* Interrupt enable register */
+#define TIM2_IER    MMIO32(TIM2_BASE + 0x03)
+#define TIM3_IER    MMIO32(TIM3_BASE + 0x03)
+#define TIM5_IER    MMIO32(TIM5_BASE + 0x03)
+// Trigger interrupt enable
+#define T2_TIE     0x40
+// Capture/compare 3 interrupt enable
+#define T2_CC3IE   0x08
+// Capture/compare 2 interrupt enable
+#define T2_CC2IE   0x04
+// Capture/compare 1 interrupt enable
+#define T2_CC1IE   0x02
+// Update interrupt enable
+#define T2_UIE     0x01
+
+/* Status register 1 */
+#define TIM2_SR1    MMIO32(TIM2_BASE + 0x04)
+#define TIM3_SR1    MMIO32(TIM3_BASE + 0x04)
+#define TIM5_SR1    MMIO32(TIM5_BASE + 0x04)
+// Trigger interrupt enable
+#define T2_TIF     0x40
+// Capture/compare 3 interrupt enable
+#define T2_CC3IF   0x08
+// Capture/compare 2 interrupt enable
+#define T2_CC2IF   0x04
+// Capture/compare 1 interrupt enable
+#define T2_CC1IF   0x02
+// Update interrupt enable
+#define T2_UIF     0x01
+
+/* Status register 2 */
+#define TIM2_SR2    MMIO32(TIM2_BASE + 0x05)
+#define TIM3_SR2    MMIO32(TIM3_BASE + 0x05)
+#define TIM5_SR2    MMIO32(TIM5_BASE + 0x05)
+// Capture/compare 3 interrupt enable
+#define T2_CC3OF   0x08
+// Capture/compare 2 interrupt enable
+#define T2_CC2OF   0x04
+// Capture/compare 1 interrupt enable
+#define T2_CC1OF   0x02
+
+/* Event generation register */
+#define TIM2_EGR    MMIO32(TIM2_BASE + 0x06)
+#define TIM3_EGR    MMIO32(TIM3_BASE + 0x06)
+#define TIM5_EGR    MMIO32(TIM5_BASE + 0x06)
+// Trigger generation
+#define T2_TG      0x40
+// Capture/compare 3 generation
+#define T2_CC3G    0x08
+// Capture/compare 2 generation
+#define T2_CC2G    0x04
+// Capture/compare 1 generation
+#define T2_CC1G    0x02
+// Update generation
+#define T2_UG      0x01
+
+/* Capture/compare mode register 1 */
+#define TIM2_CCMR1  MMIO32(TIM2_BASE + 0x07)
+#define TIM3_CCMR1  MMIO32(TIM3_BASE + 0x07)
+#define TIM5_CCMR1  MMIO32(TIM5_BASE + 0x07)
+// Output compare 1 mode
+#define T2_OC1M_FROZEN         0x00
+#define T2_OC1M_ACTIVE         0x10
+#define T2_OC1M_INACTIVE       0x20
+#define T2_OC1M_TOGGLE         0x30
+#define T2_OC1M_FORCE_INACTIVE 0x40
+#define T2_OC1M_FORCE_ACTIVE   0x50
+#define T2_OC1M_PWM1           0x60
+#define T2_OC1M_PWM2           0x70
+// Output compare 1 preload enable
+#define T2_OC1PE   0x08
+// Capture/compare 1 selection
+#define T2_CC1S_OUT        0x00
+#define T2_CC1S_TI1FP1     0x01
+#define T2_CC1S_TI2FP1     0x02
+#define T2_CC1S_TRC        0x03
+// Input capture 1 filter
+#define T2_IC1F_DIS        0x00
+#define T2_IC1F_FM_N2      0x10
+#define T2_IC1F_FM_N4      0x20
+#define T2_IC1F_FM_N8      0x30
+#define T2_IC1F_FMD2_N6    0x40
+#define T2_IC1F_FMD2_N8    0x50
+#define T2_IC1F_FMD4_N6    0x60
+#define T2_IC1F_FMD4_N8    0x70
+#define T2_IC1F_FMD8_N6    0x80
+#define T2_IC1F_FMD8_N8    0x90
+#define T2_IC1F_FMD16_N5   0xa0
+#define T2_IC1F_FMD16_N6   0xb0
+#define T2_IC1F_FMD16_N8   0xc0
+#define T2_IC1F_FMD32_N5   0xd0
+#define T2_IC1F_FMD32_N6   0xe0
+#define T2_IC1F_FMD32_N8   0xf0
+#define T2_IC1F_SHIFT      4
+// Input capture 1 prescaler
+#define T2_IC1PSC_NO       0x00
+#define T2_IC1PSC_DIV2     0x04
+#define T2_IC1PSC_DIV4     0x08
+#define T2_IC1PSC_DIV8     0x0c
+
+/* Capture/compare mode register 2 */
+#define TIM2_CCMR2  MMIO32(TIM2_BASE + 0x08)
+#define TIM3_CCMR2  MMIO32(TIM3_BASE + 0x08)
+#define TIM5_CCMR2  MMIO32(TIM5_BASE + 0x08)
+// Output compare 2 mode
+#define T2_OC2M_FROZEN         0x00
+#define T2_OC2M_ACTIVE         0x10
+#define T2_OC2M_INACTIVE       0x20
+#define T2_OC2M_TOGGLE         0x30
+#define T2_OC2M_FORCE_INACTIVE 0x40
+#define T2_OC2M_FORCE_ACTIVE   0x50
+#define T2_OC2M_PWM1           0x60
+#define T2_OC2M_PWM2           0x70
+// Output compare 2 preload enable
+#define T2_OC2PE   0x08
+// Capture/compare 2 selection
+#define T2_CC2S_OUT        0x00
+#define T2_CC2S_TI1FP1     0x01
+#define T2_CC2S_TI2FP1     0x02
+#define T2_CC2S_TRC        0x03
+// Input capture 2 filter
+#define T2_IC2F_DIS        0x00
+#define T2_IC2F_FM_N2      0x10
+#define T2_IC2F_FM_N4      0x20
+#define T2_IC2F_FM_N8      0x30
+#define T2_IC2F_FMD2_N6    0x40
+#define T2_IC2F_FMD2_N8    0x50
+#define T2_IC2F_FMD4_N6    0x60
+#define T2_IC2F_FMD4_N8    0x70
+#define T2_IC2F_FMD8_N6    0x80
+#define T2_IC2F_FMD8_N8    0x90
+#define T2_IC2F_FMD16_N5   0xa0
+#define T2_IC2F_FMD16_N6   0xb0
+#define T2_IC2F_FMD16_N8   0xc0
+#define T2_IC2F_FMD32_N5   0xd0
+#define T2_IC2F_FMD32_N6   0xe0
+#define T2_IC2F_FMD32_N8   0xf0
+#define T2_IC2F_SHIFT      4
+// Input capture 2 prescaler
+#define T2_IC2PSC_NO       0x00
+#define T2_IC2PSC_DIV2     0x04
+#define T2_IC2PSC_DIV4     0x08
+#define T2_IC2PSC_DIV8     0x0c
+
+/* Capture/compare mode register 3 */
+#define TIM2_CCMR3  MMIO32(TIM2_BASE + 0x09)
+#define TIM3_CCMR3  MMIO32(TIM3_BASE + 0x09)
+#define TIM5_CCMR3  MMIO32(TIM5_BASE + 0x09)
+// Output compare 3 mode
+#define T2_OC3M_FROZEN         0x00
+#define T2_OC3M_ACTIVE         0x10
+#define T2_OC3M_INACTIVE       0x20
+#define T2_OC3M_TOGGLE         0x30
+#define T2_OC3M_FORCE_INACTIVE 0x40
+#define T2_OC3M_FORCE_ACTIVE   0x50
+#define T2_OC3M_PWM1           0x60
+#define T2_OC3M_PWM2           0x70
+// Output compare 3 preload enable
+#define T2_OC3PE   0x08
+// Capture/compare 3 selection
+#define T2_CC3S_OUT        0x00
+#define T2_CC3S_TI1FP1     0x01
+#define T2_CC3S_TI2FP1     0x02
+#define T2_CC3S_TRC        0x03
+// Input capture 3 filter
+#define T2_IC3F_DIS        0x00
+#define T2_IC3F_FM_N2      0x10
+#define T2_IC3F_FM_N4      0x20
+#define T2_IC3F_FM_N8      0x30
+#define T2_IC3F_FMD2_N6    0x40
+#define T2_IC3F_FMD2_N8    0x50
+#define T2_IC3F_FMD4_N6    0x60
+#define T2_IC3F_FMD4_N8    0x70
+#define T2_IC3F_FMD8_N6    0x80
+#define T2_IC3F_FMD8_N8    0x90
+#define T2_IC3F_FMD16_N5   0xa0
+#define T2_IC3F_FMD16_N6   0xb0
+#define T2_IC3F_FMD16_N8   0xc0
+#define T2_IC3F_FMD32_N5   0xd0
+#define T2_IC3F_FMD32_N6   0xe0
+#define T2_IC3F_FMD32_N8   0xf0
+#define T2_IC3F_SHIFT      4
+// Input capture 3 prescaler
+#define T2_IC3PSC_NO       0x00
+#define T2_IC3PSC_DIV2     0x04
+#define T2_IC3PSC_DIV4     0x08
+#define T2_IC3PSC_DIV8     0x0c
+
+/* Capture/compare enable register 1 */
+#define TIM2_CCER1  MMIO32(TIM2_BASE + 0x0a)
+#define TIM3_CCER1  MMIO32(TIM3_BASE + 0x0a)
+#define TIM5_CCER1  MMIO32(TIM5_BASE + 0x0a)
+// Capture/compare 2 output polarity
+#define T2_CC2P    0x20
+// Capture/compare 2 output enable
+#define T2_CC2E    0x10
+// Capture/compare 1 output polarity
+#define T2_CC1P    0x02
+// Capture/compare 1 output enable
+#define T2_CC1E    0x01
+
+/* Capture/compare enable register 2 */
+#define TIM2_CCER2  MMIO32(TIM2_BASE + 0x0b)
+#define TIM3_CCER2  MMIO32(TIM3_BASE + 0x0b)
+#define TIM5_CCER2  MMIO32(TIM5_BASE + 0x0b)
+// Capture/compare 3 output polarity
+#define T2_CC3P    0x02
+// Capture/compare 3 output enable
+#define T2_CC3E    0x01
+
+/* Counter high */
+#define TIM2_CNTRH  MMIO32(TIM2_BASE + 0x0c)
+#define TIM3_CNTRH  MMIO32(TIM3_BASE + 0x0c)
+#define TIM5_CNTRH  MMIO32(TIM5_BASE + 0x0c)
+/* Counter low */
+#define TIM2_CNTRL  MMIO32(TIM2_BASE + 0x0d)
+#define TIM3_CNTRL  MMIO32(TIM3_BASE + 0x0d)
+#define TIM5_CNTRL  MMIO32(TIM5_BASE + 0x0d)
+
+/* Prescaler register */
+#define TIM2_PSCR   MMIO32(TIM2_BASE + 0x0e)
+#define TIM3_PSCR   MMIO32(TIM3_BASE + 0x0e)
+#define TIM5_PSCR   MMIO32(TIM5_BASE + 0x0e)
+
+/* Auto-reload register high */
+#define TIM2_ARRH   MMIO32(TIM2_BASE + 0x0f)
+#define TIM3_ARRH   MMIO32(TIM3_BASE + 0x0f)
+#define TIM5_ARRH   MMIO32(TIM5_BASE + 0x0f)
+/* Auto-reload register low */
+#define TIM2_ARRL   MMIO32(TIM2_BASE + 0x10)
+#define TIM3_ARRL   MMIO32(TIM3_BASE + 0x10)
+#define TIM5_ARRL   MMIO32(TIM5_BASE + 0x10)
+
+/* Capture/compare register 1 high */
+#define TIM2_CCR1H  MMIO32(TIM2_BASE + 0x11)
+#define TIM3_CCR1H  MMIO32(TIM3_BASE + 0x11)
+#define TIM5_CCR1H  MMIO32(TIM5_BASE + 0x11)
+/* Capture/compare register 1 low */
+#define TIM2_CCR1L  MMIO32(TIM2_BASE + 0x12)
+#define TIM3_CCR1L  MMIO32(TIM3_BASE + 0x12)
+#define TIM5_CCR1L  MMIO32(TIM5_BASE + 0x12)
+
+/* Capture/compare register 2 high */
+#define TIM2_CCR2H  MMIO32(TIM2_BASE + 0x13)
+#define TIM3_CCR2H  MMIO32(TIM3_BASE + 0x13)
+#define TIM5_CCR2H  MMIO32(TIM5_BASE + 0x13)
+/* Capture/compare register 2 low */
+#define TIM2_CCR2L  MMIO32(TIM2_BASE + 0x14)
+#define TIM3_CCR2L  MMIO32(TIM3_BASE + 0x14)
+#define TIM5_CCR2L  MMIO32(TIM5_BASE + 0x14)
+
+/* Capture/compare register 3 high */
+#define TIM2_CCR3H  MMIO32(TIM2_BASE + 0x15)
+#define TIM3_CCR3H  MMIO32(TIM3_BASE + 0x15)
+#define TIM5_CCR3H  MMIO32(TIM5_BASE + 0x15)
+/* Capture/compare register 3 low */
+#define TIM2_CCR3L  MMIO32(TIM2_BASE + 0x16)
+#define TIM3_CCR3L  MMIO32(TIM3_BASE + 0x16)
+#define TIM5_CCR3L  MMIO32(TIM5_BASE + 0x16)
+
+/***************************TIM4***************************/
+/* Control register 1 */
+#define TIM4_CR1    MMIO32(TIM4_BASE + 0x00)
+#define TIM6_CR1    MMIO32(TIM6_BASE + 0x00)
+// Auto-reload preload enable
+#define T4_ARPE    0x80
+// One-pulse mode
+#define T4_OPM     0x08
+// Update request source
+#define T4_URS     0x04
+// Update disable
+#define T4_UDIS    0x02
+// Counter enable
+#define T4_CEN     0x01
+
+/* Control register 2 */
+#define TIM6_CR2    MMIO32(TIM6_BASE + 0x01)
+// Master mode selection
+#define T6_MMS_ENABLE  0x10
+#define T6_MMS_RESET   0x00
+#define T6_MMS_UPDATE  0x20
+
+/* Slave mode control register */
+#define TIM6_SMCR   MMIO32(TIM6_BASE + 0x02)
+// Master/slave mode
+#define T6_MSM     0x80
+// Trigger selection
+#define TS_ITR1_TIM1 0x10
+#define TS_ITR3_TIM5 0x30
+// Clock/trigger/slave mode selection
+#define T6_SMS_DISABLE          0x00
+#define T6_SMS_RESET            0x04
+#define T6_SMS_TRIGGER_GATED    0x05
+#define T6_SMS_TRIGGER_STANDARD 0x06
+#define T6_SMS_EXTERNAL         0x07
+
+/* Interrupt enable register */
+#define TIM4_IER    MMIO32(TIM4_BASE + 0x03)
+#define TIM6_IER    MMIO32(TIM6_BASE + 0x03)
+// Trigger interrupt enable
+#define T4_TIE     0x40
+// Update interrupt enable
+#define T4_UIE     0x01
+
+/* Status register 1 */
+#define TIM4_SR     MMIO32(TIM4_BASE + 0x04)
+#define TIM6_SR     MMIO32(TIM6_BASE + 0x04)
+// Trigger interrupt enable
+#define T4_TIF     0x40
+// Update interrupt enable
+#define T4_UIF     0x01
+
+/* Event generation register */
+#define TIM4_EGR    MMIO32(TIM4_BASE + 0x05)
+#define TIM6_EGR    MMIO32(TIM6_BASE + 0x05)
+// Trigger generation
+#define T4_TG      0x40
+// Update generation
+#define T4_UG      0x01
+
+/* Counter */
+#define TIM4_CNTR   MMIO32(TIM4_BASE + 0x06)
+#define TIM6_CNTR   MMIO32(TIM6_BASE + 0x06)
+
+/* Prescaler register */
+#define TIM4_PSCR   MMIO32(TIM4_BASE + 0x07)
+#define TIM6_PSCR   MMIO32(TIM6_BASE + 0x07)
+
+/* Auto-reload register */
+#define TIM4_ARR    MMIO32(TIM4_BASE + 0x08)
+#define TIM6_ARR    MMIO32(TIM6_BASE + 0x08)
+
 
 #endif
