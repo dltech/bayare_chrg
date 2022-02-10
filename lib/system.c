@@ -1,6 +1,6 @@
 /*
- * Part of old-school 8-bit transformer battery charger. Interrupt relateg
- * functions of STM8.
+ * Part of old-school 8-bit transformer battery charger. System init functions
+ *  of STM8.
  *
  * Copyright 2022 Mikhail Belkin <dltech174@gmail.com>
  *
@@ -18,6 +18,7 @@
  */
 
 #include "interrupt.h"
+#include "regs/clk_reg.h"
 
 void setPriority(uint8_t nInt, uint8_t level)
 {
@@ -28,4 +29,16 @@ void setPriority(uint8_t nInt, uint8_t level)
     uint8_t shift = (nInt % intPerReg)*2;
     ITC_SPR(reg) &= ~(PRIORITY_MSK << shift);
     ITC_SPR(reg) |= (level & PRIORITY_MSK) << shift;
+}
+
+void clockTo16Hsi(void)
+{
+    CLK_CKDIVR = HSIDIV_NODIV | CPUDIV_NODIV;
+    CLK_SWR = SWI_HSI;
+    uint16_t timeout = 65535;
+    while( ( CLK_SWCR & SWIF ) || (--timeout > 1) );
+    if( timeout < 2 ) {
+        CLK_SWCR &= ~SWBSY;
+    }
+    CLK_SWCR |= SWEN;
 }

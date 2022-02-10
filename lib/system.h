@@ -1,8 +1,8 @@
-#ifndef H_INTERRUPT
-#define H_INTERRUPT
+#ifndef H_SYSTEM
+#define H_SYSTEM
 /*
  * Part of old-school 8-bit transformer battery charger.
- * File with implementation of STM8 interrupt functionality.
+ * System init functions of STM8
  *
  * Copyright 2022 Mikhail Belkin <dltech174@gmail.com>
  *
@@ -23,5 +23,8 @@
 
 // set priority level of choosen interrupt
 void setPriority(uint8_t nInt, uint8_t level);
+// set maximal built in clock
+void clockTo16Hsi(void);
+
 
 #endif
