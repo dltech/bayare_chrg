@@ -1,5 +1,5 @@
 /*
- * Part of old-school 8-bit transformer battery charger. STM8 GPIO relastive
+ * Part of old-school 8-bit transformer battery charger. STM8 GPIO relative
  * functions.
  *
  * Copyright 2022 Mikhail Belkin <dltech174@gmail.com>
@@ -16,6 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "gpio.h"
 
 void setPin(uint8_t port, uint8_t pin)
 {

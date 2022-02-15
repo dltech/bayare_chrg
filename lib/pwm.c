@@ -1,8 +1,6 @@
-#ifndef H_SYSTEM
-#define H_SYSTEM
 /*
- * Part of old-school 8-bit transformer battery charger.
- * System init functions of STM8
+ * Part of old-school 8-bit transformer battery charger. STM8 PWM output to
+ * the swithing transistor.
  *
  * Copyright 2022 Mikhail Belkin <dltech174@gmail.com>
  *
@@ -18,28 +16,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "pwm.h"
+#include "regs/tim_reg.h"
+#include "gpio.h"
 
-#include "regs/interrupt_reg.h"
+void pwmInit()
+{
+    portConfig(PWM_PORT, PWM_PIN, OUTPUT_PP_10M);
+    // timer for tacts
+    enable(TIM2);
+    // pwm mode with inversion (0 output means transistor open)
+    TIM2_CCMR1 = OC1M_PWM2 | CC1S_OUT;
+    TIM2_PSCR  = 0;
+    TIM2_ARRH  = 0;
+    TIM2_ARRL  = 255;
+    TIM2_CCR1H = 0;
+    TIM2_CCR1L = 0;
+    TIM2_CR1  |= CEN;
+    TIM2_EGR  |= UG;
+}
 
-// list of peripherial for enable function
-enum enablePeriph {
-    TIM1,
-    TIM2,
-    TIM3,
-    TIM4,
-    UART1,
-    SPI,
-    I2C,
-    ADC,
-    AWU
-};
-
-// set priority level of choosen interrupt
-void setPriority(uint8_t nInt, uint8_t level);
-// set maximal built in clock
-void clockTo16Hsi(void);
-// enable peripherial clocking
-viod enable(uint8_t periph);
-
-
-#endif
+void setDutyCycle(uint8_t dut)
+{
+    TIM2_CCR1L = dut;
+}

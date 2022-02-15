@@ -1,8 +1,8 @@
-#ifndef H_SYSTEM
-#define H_SYSTEM
+#ifndef H_PWM
+#define H_PWM
 /*
- * Part of old-school 8-bit transformer battery charger.
- * System init functions of STM8
+ * Part of old-school 8-bit transformer battery charger. STM8 PWM output to
+ * the swithing transistor.
  *
  * Copyright 2022 Mikhail Belkin <dltech174@gmail.com>
  *
@@ -19,27 +19,10 @@
  * limitations under the License.
  */
 
-#include "regs/interrupt_reg.h"
+#define PWM_PORT    GPIOD
+#define PWM_PIN     GPIO4
 
-// list of peripherial for enable function
-enum enablePeriph {
-    TIM1,
-    TIM2,
-    TIM3,
-    TIM4,
-    UART1,
-    SPI,
-    I2C,
-    ADC,
-    AWU
-};
-
-// set priority level of choosen interrupt
-void setPriority(uint8_t nInt, uint8_t level);
-// set maximal built in clock
-void clockTo16Hsi(void);
-// enable peripherial clocking
-viod enable(uint8_t periph);
-
+void pwmInit(void);
+void setDutyCycle(uint8_t dut);
 
 #endif

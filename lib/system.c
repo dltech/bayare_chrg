@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-#include "interrupt.h"
+#include "system.h"
 #include "regs/clk_reg.h"
 
 void setPriority(uint8_t nInt, uint8_t level)
@@ -41,4 +41,37 @@ void clockTo16Hsi(void)
         CLK_SWCR &= ~SWBSY;
     }
     CLK_SWCR |= SWEN;
+}
+
+void enable(uint8_t periph)
+{
+    switch( periph ) {
+        case TIM1:
+            CLK_PCKENR1 |= PCKEN1_TIM1;
+            break;
+        case TIM2:
+            CLK_PCKENR1 |= PCKEN1_TIM2;
+            break;
+        case TIM3:
+            CLK_PCKENR1 |= PCKEN1_TIM3;
+            break;
+        case TIM4:
+            CLK_PCKENR1 |= PCKEN1_TIM4;
+            break;
+        case UART1:
+            CLK_PCKENR1 |= PCKEN1_UART1;
+            break;
+        case SPI:
+            CLK_PCKENR1 |= PCKEN1_SPI;
+            break;
+        case I2C:
+            CLK_PCKENR1 |= PCKEN1_I2C;
+            break;
+        case ADC:
+            CLK_PCKENR2 |= PCKEN2_ADC;
+            break;
+        case AWU:
+            CLK_PCKENR2 |= PCKEN2_AWU;
+            break;
+    }
 }
