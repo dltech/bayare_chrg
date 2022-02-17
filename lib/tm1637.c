@@ -19,7 +19,6 @@
 
 #include "tm1637.h"
 #include "regs/tim_reg.h"
-#include "gpio.h"
 
 // little init functions as parts of main init function
 void tmPortInit(void);

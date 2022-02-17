@@ -18,7 +18,6 @@
  */
 #include "pwm.h"
 #include "regs/tim_reg.h"
-#include "gpio.h"
 
 void pwmInit()
 {
