@@ -1,8 +1,8 @@
-#ifndef H_CHARGER
-#define H_CHARGER
+#ifndef H_DISPLAY
+#define H_DISPLAY
 /*
  * Part of old-school 8-bit transformer battery charger.
- * The whole regulator is implemented here, in main run chrgInit
+ * Local 7-segment display output functions. (simplest printf alternative).
  *
  * Copyright 2022 Mikhail Belkin <dltech174@gmail.com>
  *
@@ -19,29 +19,23 @@
  * limitations under the License.
  */
 
+// schematic depended (not necessarily segment A fits byte 0)
+#define SEGA  (1 << 0)
+#define SEGB  (1 << 2)
+#define SEGC  (1 << 4)
+#define SEGD  (1 << 6)
+#define SEGE  (1 << 7)
+#define SEGF  (1 << 1)
+#define SEGG  (1 << 3)
+#define SEGDP (1 << 5)
 
-#include "gpio.h"
+#define DIGITS  3
 
-#define AMP_THRESH  512
-#define VOLT_THRESH 900
-
-#define MAX_VOLT    17
-#define MAX_AMP     10
-
-#define BUTTON_PORT GPIOA
-#define BUTTON1_PIN GPIO1
-#define BUTTON2_PIN GPIO2
-
-typedef struct {
-    uint16_t volt;
-    uint16_t amp;
-} setValueTyp;
-
-void chrgInit(void);
-
-void regulator(setValueTyp set, uint16_t amp, uint16_t volt);
-void applyAmp(void);
-void applyVolt(void);
-
+// show number with one decimal in digit *10 format
+void digit1WDot(uint8_t digit);
+void digit2WDot(uint8_t digit);
+// show text on first or second digit screen
+void textLine1(char* str);
+void textLine2(char* str);
 
 #endif

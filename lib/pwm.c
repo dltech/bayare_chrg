@@ -35,7 +35,40 @@ void pwmInit()
     TIM2_EGR  |= UG;
 }
 
-void setDutyCycle(uint8_t dut)
+void setDutyCycle(uint16_t dut)
 {
-    TIM2_CCR1L = dut;
+    TIM2_CCR1H = (uint8_t)(dut>>8) & 0x01;
+    TIM2_CCR1L = (uint8_t)dut;
+}
+
+uint16_t getDutyCycle()
+{
+    return (TIM2_CCR1H<<8) + TIM2_CCR1L;
+}
+
+void incDutyCycle()
+{
+    if(TIM2_CCR1L == 255) {
+        TIM2_CCR1H = 1;
+        TIM2_CCR1L = 0;
+    } else {
+        TIM2_CCR1L += 1;
+    }
+}
+
+void decDutyCycle()
+{
+    if( TIM2_CCR1L > 0 ) {
+        TIM2_CCR1L -= 1;
+    } else {
+    if( TIM2_CCR1H == 1 ) {
+        TIM2_CCR1H = 0;
+        TIM2_CCR1L = 255;
+    }
+}
+
+void pwmOff()
+{
+    TIM2_CCR1H = 0;
+    TIM2_CCR1L = 0;
 }
