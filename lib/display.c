@@ -45,6 +45,18 @@ void digit2WDot(uint8_t digit)
     tmUpd(displayBuffer);
 }
 
+void showTime(uint8_t time)
+{
+    uint8_t strTime[3];
+    if(time > 99) time = 99;
+    utoa(time, strTime, 10);
+    for(uint8_t i=0 ; i<2 ; ++i) {
+        displayBuffer[i] = alphabet(strDigit[i]);
+    }
+    displayBuffer[2] |= alphabet('h');
+    tmUpd(displayBuffer);
+}
+
 void textLine1(char* str)
 {
     // разворачивательница строки в то как у меня дорожки легли

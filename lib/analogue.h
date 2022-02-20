@@ -17,7 +17,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #include "gpio.h"
 
 #define MAX_ADC     1024
@@ -36,8 +35,16 @@
 #define RV1_CH      5
 #define RV2_CH      6
 
+typedef struct {
+    uint16_t volt;
+    uint16_t amp;
+    uint8_t rv1;
+    uint8_t rv2;
+} analogueTyp;
+
 // initialization
 void analogueInit(void);
+
 // getters of measured values, data formats are:
 // voltage in volts multiplied by 10
 uint8_t getVolt(void);
@@ -49,6 +56,5 @@ uint8_t getRv(uint8_t channel);
 // measurements translating functions
 uint16_t voltToAdc(uint8_t volt);
 uint16_t ampToAdc(uint8_t amp);
-
 
 #endif

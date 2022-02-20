@@ -1,6 +1,6 @@
 /*
  * Part of old-school 8-bit transformer battery charger.
- * The whole regulator is implemented here
+ * The whole regulator is implemented here.
  *
  * Copyright 2022 Mikhail Belkin <dltech174@gmail.com>
  *
@@ -20,16 +20,26 @@
 #include "analogue.h"
 #include "tm1637.h"
 #include "display.h"
+#include "button.h"
+#include "regs/tim_reg.h"
+#include "autocharge.h"
 #include "charger.h"
 
 void chargerInit(void);
+void mainMenu(void);
+void applyVolt(void);
+void applyAmp(void);
+void clockTick(void);
 
 volatile setValueTyp setValue;
+volatile menuParamTyp param;
+extern volatile analogueTyp ana;
 
 void chrgInit()
 {
     tmInit();
     analogueInit();
+    buttonInit();
     chargerInit();
 }
 
@@ -37,18 +47,66 @@ void chargerInit()
 {
     setValue.amp = 0;
     setValue.volt = 0;
-    portConfig(BUTTON_PORT, BUTTON1_PIN | BUTTON2_PIN, INPUT_PULLUP);
+    param.state = AMP_STABLE;
+    enable(TIM1);
+    TIM1_IER   = UIE;
+    TIM1_PSCRH = 255;
+    TIM1_PSCRL = 255;
+    TIM1_ARRH  = 0;
+    TIM1_ARRL  = (uint8_t)ARRL_MENU;
+    TIM1_CR1  |= CEN;
+    TIM1_EGR  |= UG;
+    setPriority(TIM1_UPD_ITN, 0);
 }
 
 void mainMenu()
 {
-
+    switch(param.state) {
+        case VOLT_STABLE:
+            digit1WDot(getVolt());
+            if(param.prevRv1 != ana.rv1) {
+                param.state = VOLT_CHANGE;
+            }
+            break;
+        case VOLT_CHANGE:
+            digit1WDot(((uint16_t)MAX_VOLT*1000)/ana.rv1);
+            if(param.prevRv1 != ana.rv1) {
+                param.state = VOLT_SET;
+            }
+            break;
+        case VOLT_SET:
+            applyVolt();
+            param.state = VOLT_STABLE;
+            break;
+        case AMP_STABLE:
+            digit2WDot(getAmp());
+            if(param.prevRv1 != ana.rv1) {
+                param.state = AMP_CHANGE;
+            }
+            break;
+        case AMP_CHANGE:
+            digit2WDot(((uint16_t)MAX_VOLT*1000)/ana.rv1);
+            if(param.prevRv1 == ana.rv1) {
+                param.state = AMP_SET;
+            }
+            break;
+        case AMP_SET:
+            applyAmp();
+            param.state = AMP_STABLE;
+            break;
+        case AUTO_CHARGE:
+            autoCharge();
+            break;
+    }
+    param.prevRv1 = ana.rv1;
+//    param.prevRv2 = param.rv2;
 }
 
-void regulator(setValueTyp set, uint16_t amp, uint16_t volt)
+
+void regulator(uint16_t setAmp, uint16_t setVolt, uint16_t amp, uint16_t volt)
 {
     static uint8_t softStartCnt = 0;
-    if((set.volt > volt) && (set.amp > amp)) {
+    if((setVolt > volt) && (setAmp > amp)) {
         ++softStartCnt;
     } else {
         softStartCnt = 0;
@@ -56,7 +114,7 @@ void regulator(setValueTyp set, uint16_t amp, uint16_t volt)
     if(softStartCnt > 254) {
         incDutyCycle();
     }
-    if((volt > set.volt) || (amp > set.amp)) {
+    if((volt > setVolt) || (amp > setAmp)) {
         decDutyCycle();
     }
     // short circuit protection
@@ -73,4 +131,19 @@ void applyVolt()
 void applyAmp()
 {
     setValue.amp = ampToAdc(((uint16_t)MAX_VOLT*100)/getRv(RV1_CH));
+}
+
+void clockTick()
+{
+    static uint16_t cnt = 0;
+    if(++cnt > TEN_MINUTES) {
+        cnt = 0;
+        ++param.time
+    }
+}
+
+void menuUpdate(void) __interrupt(TIM1_UPD_ITN)
+{
+    clockTick();
+    mainMenu();
 }

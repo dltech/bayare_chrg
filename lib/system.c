@@ -75,3 +75,28 @@ void enable(uint8_t periph)
             break;
     }
 }
+
+void delay(uint8_t ms)
+{
+    volatile uint8_t cnt1 = 255;
+    volatile uint8_t cnt2 = 255;
+    volatile uint8_t cnt3 = 255;
+    volatile uint8_t cnt4 = 255;
+    while(ms > 0)
+    {
+        if(cnt1 == 0) {
+            --cnt2;
+        } else {
+            --cnt1;
+        }
+        if(cnt2 == 0) {
+            --cnt3;
+        }
+        if(cnt3 == 0) {
+            --cnt4;
+        }
+        if(cnt4 == 0) {
+            --ms;
+        }
+    }
+}

@@ -18,24 +18,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 #include "gpio.h"
 
 #define AMP_THRESH  512
 #define VOLT_THRESH 900
-
 #define MAX_VOLT    17
 #define MAX_AMP     10
+#define UPDATE_FPS  15
 
-#define BUTTON_PORT GPIOA
-#define BUTTON1_PIN GPIO1
-#define BUTTON2_PIN GPIO2
+#define ARRL_MENU   244/UPDATE_FPS
+#define HALF_HOUR   1800*UPDATE_FPS
 
 typedef struct {
     uint16_t volt;
     uint16_t amp;
 } setValueTyp;
+
+typedef struct {
+    uint8_t prevRv1;
+    uint8_t prevRv2;
+    uint8_t state;
+    uint8_t time;
+} menuParamTyp;
+
+enum states {
+    VOLT_CHANGE,
+    VOLT_SET,
+    VOLT_STABLE,
+    AMP_CHANGE,
+    AMP_SET,
+    AMP_STABLE,
+    AUTO_CHARGE
+};
 
 void chrgInit(void);
 

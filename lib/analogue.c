@@ -19,12 +19,13 @@
 #include "regs/adc_reg.h"
 #include "charger.h"
 
-volatile setValueTyp setValue = {0,0};
+extern volatile setValueTyp setValue;
+volatile analogueTyp ana;
 
 void analogueInit()
 {
     portConfig(ADC_PORT, AMP_PIN | VOLT_PIN | RV1_PIN | RV2_PIN, INPUT_FLOAT);
-    ADC1_CR1  = SPSEL_DIV2 | CONT;
+    ADC1_CR1  = SPSEL_DIV4 | CONT;
     ADC1_CR2  = SCAN;
     ADC1_CSR  = EOCIE | CH_AIN6;
     // maximal priority for fast stabilization and short circuit protection
@@ -34,24 +35,22 @@ void analogueInit()
 
 uint8_t getVolt(void)
 {
-    uint16_t volt = (uint16_t)(ADC1_DBRH(VOLT_CH) << 8) + ADC1_DBRL(VOLT_CH);
-    return (volt*10) / ADC_TO_VOLT;
+    return (ana.volt*10) / ADC_TO_VOLT;
 }
 
 uint8_t getAmp(void)
 {
-    uint16_t amp  = (uint16_t)(ADC1_DBRH(AMP_CH) << 8) + ADC1_DBRL(AMP_CH);
-    return (amp*10) / ADC_TO_AMP;
+    return (ana.amp*10) / ADC_TO_AMP;
 }
 
 uint16_t voltToAdc(uint8_t volt)
 {
-    return ((uint16_t)volt * ADC_TO_VOLT) / 10
+    return ((uint16_t)volt * ADC_TO_VOLT) / 10;
 }
 
 uint16_t ampToAdc(uint8_t amp)
 {
-    return ((uint16_t)volt * ADC_TO_AMP) / 10
+    return ((uint16_t)volt * ADC_TO_AMP) / 10;
 }
 
 uint8_t getRv(uint8_t channel)
@@ -63,7 +62,11 @@ uint8_t getRv(uint8_t channel)
 // interrupt on compliting the measurements
 void adcComplete(void) __interrupt(ADC1_ITN)
 {
-    uint16_t volt = (uint16_t)(ADC1_DBRH(VOLT_CH) << 8) + ADC1_DBRL(VOLT_CH);
-    uint16_t amp  = (uint16_t)(ADC1_DBRH(AMP_CH) << 8) + ADC1_DBRL(AMP_CH);
-    regulator(setValue, amp, volt);
+    ana.amp += (uint16_t)(ADC1_DBRH(AMP_CH) << 8) + ADC1_DBRL(AMP_CH);
+    ana.volt += (uint16_t)(ADC1_DBRH(VOLT_CH) << 8) + ADC1_DBRL(VOLT_CH);
+    ana.amp /= 2;
+    ana.volt /= 2;
+    ana.rv1 = (ana.rv1 + getRv(RV1_CH)) / 2;
+//    ana.rv2 = (ana.rv2 + getRv(RV1_CH)) / 2;
+    regulator(setValue.amp, setValue.volt, ana.amp, ana.volt);
 }

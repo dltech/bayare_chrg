@@ -1,8 +1,8 @@
-#ifndef H_SYSTEM
-#define H_SYSTEM
+#ifndef H_BUTTON
+#define H_BUTTON
 /*
- * Part of old-school 8-bit transformer battery charger.
- * System init functions of STM8
+ * Part of old-school 8-bit transformer battery charger. Button pressing
+ * interrupt routines.
  *
  * Copyright 2022 Mikhail Belkin <dltech174@gmail.com>
  *
@@ -18,28 +18,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "gpio.h"
 
-#include "regs/interrupt_reg.h"
+#define BUTTON_PORT GPIOA
+#define BUTTON1_PIN GPIO1
+#define BUTTON2_PIN GPIO2
 
-// list of peripherial for enable function
-enum enablePeriph {
-    TIM1,
-    TIM2,
-    TIM3,
-    TIM4,
-    UART1,
-    SPI,
-    I2C,
-    ADC,
-    AWU
-};
-
-// set priority level of choosen interrupt
-void setPriority(uint8_t nInt, uint8_t level);
-// set maximal built in clock
-void clockTo16Hsi(void);
-// enable peripherial clocking
-viod enable(uint8_t periph);
-void delay(uint8_t ms);
+void buttonInit(void);
 
 #endif
