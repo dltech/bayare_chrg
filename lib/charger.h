@@ -27,7 +27,6 @@
 #define UPDATE_FPS  15
 
 #define ARRL_MENU   244/UPDATE_FPS
-#define HALF_HOUR   1800*UPDATE_FPS
 
 typedef struct {
     uint16_t volt;
@@ -38,7 +37,6 @@ typedef struct {
     uint8_t prevRv1;
     uint8_t prevRv2;
     uint8_t state;
-    uint8_t time;
 } menuParamTyp;
 
 enum states {
@@ -53,7 +51,7 @@ enum states {
 
 void chrgInit(void);
 
-void regulator(setValueTyp set, uint16_t amp, uint16_t volt);
+void regulator(uint16_t setAmp, uint16_t setVolt, uint16_t amp, uint16_t volt);
 void applyAmp(void);
 void applyVolt(void);
 

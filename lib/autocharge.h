@@ -24,6 +24,7 @@
 #define NORMALTIME  8
 #define LABELCNT    LABELTIME*UPDATE_FPS
 #define NORMALCNT   NORMALTIME*UPDATE_FPS
+#define HALF_HOUR   1800*UPDATE_FPS
 
 enum chargeState {
     START = 0,
@@ -34,17 +35,6 @@ enum chargeState {
     MAINTANCE,
     ERROR
 };
-
-const struct {
-    uint8_t minimumAmp;
-    uint8_t constantAmp;
-    uint8_t equalizationAmp;
-    uint8_t maintanceAmp;
-    uint8_t constantCurrent;
-    uint8_t lowCurrent;
-    uint8_t voltageDelta;
-    uint8_t currentDelta;
-} chargeTable = {40, 145, 15, 135, 50, 10, 5, 5};
 
 void resetCharger(void);
 void autoCharge(void);

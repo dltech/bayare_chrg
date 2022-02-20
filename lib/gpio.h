@@ -18,6 +18,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <stdint.h>
 #include "regs/gpio_reg.h"
 
 enum gpios{
@@ -42,7 +43,7 @@ enum configs{
 
 void setPin(uint8_t port, uint8_t pin);
 void resetPin(uint8_t port, uint8_t pin);
-void readPin(uint8_t port, uint8_t pin);
+uint8_t readPin(uint8_t port, uint8_t pin);
 void portConfig(uint8_t port, uint8_t pin, uint8_t config);
 
 #endif

@@ -16,8 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "pwm.h"
 #include "regs/tim_reg.h"
+#include "system.h"
+#include "pwm.h"
 
 void pwmInit()
 {
@@ -60,8 +61,7 @@ void decDutyCycle()
 {
     if( TIM2_CCR1L > 0 ) {
         TIM2_CCR1L -= 1;
-    } else {
-    if( TIM2_CCR1H == 1 ) {
+    } else if( TIM2_CCR1H == 1 ) {
         TIM2_CCR1H = 0;
         TIM2_CCR1L = 255;
     }

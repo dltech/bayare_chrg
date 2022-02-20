@@ -8,16 +8,21 @@ REG_DIR = lib/regs
 #sources
 MAIN_SRC = main.c
 SOURCES  = $(LIB_DIR)/gpio.c
-SOURCES += $(REG_DIR)/timer.c
-SOURCES += $(REG_DIR)/adc.c
+SOURCES  += $(LIB_DIR)/pwm.c
+SOURCES  += $(LIB_DIR)/system.c
+SOURCES  += $(LIB_DIR)/analogue.c
+SOURCES  += $(LIB_DIR)/button.c
+SOURCES  += $(LIB_DIR)/tm1637.c
+SOURCES  += $(LIB_DIR)/display.c
+SOURCES  += $(LIB_DIR)/autocharge.c
+SOURCES  += $(LIB_DIR)/charger.c
 
 INCLUDES   = -I $(LIB_DIR)/
 INCLUDES  += -I $(REG_DIR)/
-INCLUDES  += -I /
 
 #main information
 CC = sdcc
-CFLAGS = -opt-code-size  -std-c89 -allow-unsafe-read -mstm8
+CFLAGS = -opt-code-size -std-c99 -mstm8
 RELS = $(SOURCES:%.c=$(ODIR)/%.rel)
 
 #main rule
@@ -30,4 +35,9 @@ $(ODIR)/%.rel: %.c
 #link
 $(TARGET).ihx: $(RELS)
 	@echo "[linking] $@"
-	@$(CC) $(CFLAGS) $(MAIN_SRC) $(RELS) -o $@
+	@$(CC) $(CFLAGS) $(MAIN_SRC) $(RELS) $(INCLUDES) -o $@
+# Clean rule
+#.PHONY:
+clean:
+	@rm -rf $(ODIR)
+	@rm -r $(TARGET).*

@@ -16,6 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <stdlib.h>
 #include "tm1637.h"
 #include "display.h"
 
@@ -27,7 +28,7 @@ volatile uint8_t displayBuffer[DISPLAY_SIZE] = {0};
 void digit1WDot(uint8_t digit)
 {
     uint8_t strDigit[4];
-    utoa(digit, strDigit, 10);
+    __uitoa(digit, strDigit, 10);
     displayBuffer[3] = alphabet(strDigit[1]);
     displayBuffer[4] = alphabet(strDigit[2]) | SEGDP;
     displayBuffer[5] = alphabet(strDigit[0]);
@@ -37,7 +38,7 @@ void digit1WDot(uint8_t digit)
 void digit2WDot(uint8_t digit)
 {
     uint8_t strDigit[4];
-    utoa(digit, strDigit, 10);
+    __uitoa(digit, strDigit, 10);
     for(uint8_t i=0 ; i<DIGITS ; ++i) {
         displayBuffer[i] = alphabet(strDigit[i]);
     }
@@ -49,9 +50,9 @@ void showTime(uint8_t time)
 {
     uint8_t strTime[3];
     if(time > 99) time = 99;
-    utoa(time, strTime, 10);
+    __uitoa(time, strTime, 10);
     for(uint8_t i=0 ; i<2 ; ++i) {
-        displayBuffer[i] = alphabet(strDigit[i]);
+        displayBuffer[i] = alphabet(strTime[i]);
     }
     displayBuffer[2] |= alphabet('h');
     tmUpd(displayBuffer);

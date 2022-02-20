@@ -18,6 +18,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <stdint.h>
 
 // schematic depended (not necessarily segment A fits byte 0)
 #define SEGA  (1 << 0)

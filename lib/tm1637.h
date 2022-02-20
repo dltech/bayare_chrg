@@ -1,6 +1,5 @@
 #ifndef H_TM1637
 #define H_TM1637
-
 /*
  * printf for TM1637 display-driver based 7-segment displays
  * connected to STM8.
@@ -19,8 +18,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#include "inttypes.h"
+#include <stdint.h>
 #include "gpio.h"
 
 // ports

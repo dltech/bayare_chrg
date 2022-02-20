@@ -16,13 +16,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "system.h"
 #include "pwm.h"
 #include "analogue.h"
 #include "tm1637.h"
 #include "display.h"
 #include "button.h"
-#include "regs/tim_reg.h"
 #include "autocharge.h"
+#include "regs/tim_reg.h"
 #include "charger.h"
 
 void chargerInit(void);
@@ -131,15 +132,6 @@ void applyVolt()
 void applyAmp()
 {
     setValue.amp = ampToAdc(((uint16_t)MAX_VOLT*100)/getRv(RV1_CH));
-}
-
-void clockTick()
-{
-    static uint16_t cnt = 0;
-    if(++cnt > TEN_MINUTES) {
-        cnt = 0;
-        ++param.time
-    }
 }
 
 void menuUpdate(void) __interrupt(TIM1_UPD_ITN)

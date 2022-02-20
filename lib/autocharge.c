@@ -17,14 +17,15 @@
  * limitations under the License.
  */
 #include "display.h"
+#include "analogue.h"
 #include "autocharge.h"
 
 extern volatile setValueTyp setValue;
-
 volatile struct chargeSettings {
     uint8_t state;
     uint8_t stabCnt;
     uint32_t nCycles;
+    uint8_t time;
     uint8_t totalTime;
     const uint8_t dispUpdateDiv;
     const uint8_t stabAmount;
@@ -34,6 +35,7 @@ volatile struct chargeSettings {
 } chSet = {CHECK, 0, 0, 0, 50, 200, 72*2, 8*2, 1};
 
 void updateLable(void);
+void clockTick(void);
 
 void updateLable()
 {
@@ -49,7 +51,7 @@ void updateLable()
     static uint8_t isLabel = 0;
     if((cnt > LABELCNT) && (isLabel == 0)) {
         textLine1(lbl[chSet.state]);
-        showTime((param.time + chSet.totalTime)/2);
+        showTime((chSet.time + chSet.totalTime)/2);
         cnt = 0;
         isLabel = 1;
     }
@@ -70,10 +72,21 @@ void resetCharger()
 
 void autoCharge()
 {
+    const struct {
+        uint8_t minimumAmp;
+        uint8_t constantAmp;
+        uint8_t equalizationAmp;
+        uint8_t maintanceAmp;
+        uint8_t constantCurrent;
+        uint8_t lowCurrent;
+        uint8_t voltageDelta;
+        uint8_t currentDelta;
+    } table = {40, 145, 15, 135, 50, 10, 5, 5};
+
     switch( chSet.state )
     {
         case START:
-            setValue.totalTime = 0;
+            chSet.totalTime = 0;
             setValue.volt = 0;
             setValue.amp = 2;
             ++chSet.stabCnt;
@@ -83,84 +96,84 @@ void autoCharge()
             }
             break;
         case CHECK:
-            if( getVolt() >= table->minimumAmp ) {
+            if( getVolt() >= table.minimumAmp ) {
                 ++chSet.stabCnt;
             } else {
                 chSet.stabCnt = 0;
             }
             if( chSet.stabCnt > chSet.stabAmount ) {
-                setValue.volt = voltToAdc(table->constantAmp);
-                setValue.amp = ampToAdc(table->constantCurrent);
+                setValue.volt = voltToAdc(table.constantAmp);
+                setValue.amp = ampToAdc(table.constantCurrent);
                 chSet.stabCnt = 0;
-                param.time = 0;
+                chSet.time = 0;
                 chSet.state = BULK;
             }
             break;
         case BULK:
-            if( getVolt() >= table->maintanceAmp ) {
+            if( getVolt() >= table.maintanceAmp ) {
                 ++chSet.stabCnt;
             } else {
                 chSet.stabCnt = 0;
             }
             if( chSet.stabCnt > chSet.stabAmount ) {
                 chSet.stabCnt = 0;
-                setValue.volt = voltToAdc(table->constantAmp);
-                chSet.totalTime = param.time;
-                param.time = 0;
+                setValue.volt = voltToAdc(table.constantAmp);
+                chSet.totalTime = chSet.time;
+                chSet.time = 0;
                 chSet.state = ABSORPTION;
             }
-            if( param.time > chSet.bulkTime) {
+            if( chSet.time > chSet.bulkTime) {
                 chSet.state = ERROR;
             }
             break;
         case ABSORPTION:
-            if( tlPar.current <= table->lowCurrent ) {
+            if( getAmp() <= table.lowCurrent ) {
                 ++chSet.stabCnt;
             } else {
                 chSet.stabCnt = 0;
             }
             if( chSet.stabCnt > chSet.stabAmount ) {
-                setValue.volt = voltToAdc(table->maintanceAmp);
-                setValue.amp = ampToAdc(table->lowCurrent);
+                setValue.volt = voltToAdc(table.maintanceAmp);
+                setValue.amp = ampToAdc(table.lowCurrent);
                 chSet.stabCnt = 0;
                 chSet.state = MAINTANCE;
             }
-            if( param.time > chSet.absorptionTime ) {
-                setValue.volt = voltToAdc(table->equalizationAmp);
-                setValue.amp = ampToAdc(table->lowCurrent);
+            if( chSet.time > chSet.absorptionTime ) {
+                setValue.volt = voltToAdc(table.equalizationAmp);
+                setValue.amp = ampToAdc(table.lowCurrent);
                 chSet.stabCnt = 0;
-                totalTime += param.time;
-                param.time = 0;
+                chSet.totalTime += chSet.time;
+                chSet.time = 0;
                 chSet.state = EQUALIZATION;
             }
             break;
         case EQUALIZATION:
-            if( getVolt() >= table->equalizationAmp ) {
+            if( getVolt() >= table.equalizationAmp ) {
                 ++chSet.stabCnt;
             } else {
                 chSet.stabCnt = 0;
             }
             if( chSet.stabCnt > chSet.stabAmount ) {
-                setValue.volt = voltToAdc(table->maintanceAmp);
-                setValue.amp = ampToAdc(table->lowCurrent);
+                setValue.volt = voltToAdc(table.maintanceAmp);
+                setValue.amp = ampToAdc(table.lowCurrent);
                 chSet.stabCnt = 0;
                 chSet.state = MAINTANCE;
             }
-            if( param.time > chSet.equalizationTime ) {
+            if( chSet.time > chSet.equalizationTime ) {
                 chSet.stabCnt = 0;
-                param.time = 0;
+                chSet.time = 0;
                 chSet.state = START;
             }
             break;
         case MAINTANCE:
-            if( getVolt() < (table->maintanceAmp - table->voltageDelta) ) {
+            if( getVolt() < (table.maintanceAmp - table.voltageDelta) ) {
                 ++chSet.stabCnt;
             } else {
                 chSet.stabCnt = 0;
             }
             if( chSet.stabCnt > chSet.stabAmount ) {
                 chSet.stabCnt = 0;
-                param.time = 0;
+                chSet.time = 0;
                 chSet.state = START;
             }
             break;
@@ -174,4 +187,13 @@ void autoCharge()
             break;
     }
     updateLable();
+}
+
+void clockTick()
+{
+    static uint16_t cnt = 0;
+    if(++cnt > HALF_HOUR) {
+        cnt = 0;
+        ++chSet.time;
+    }
 }

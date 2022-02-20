@@ -30,7 +30,7 @@ void resetPin(uint8_t port, uint8_t pin)
 
 uint8_t readPin(uint8_t port, uint8_t pin)
 {
-    if( (P_IDR(n) & pin) > 0 )  return 1;
+    if( (P_IDR(port) & pin) > 0 )  return 1;
     return 0;
 }
 

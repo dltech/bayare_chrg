@@ -131,9 +131,9 @@
 #define CCOSEL_CPU_D64  0x14
 #define CCOSEL_HSI      0x16
 #define CCOSEL_MASTER   0x18
-#define CCOSEL_CPU      0x1a
-#define CCOSEL_CPU      0x1c
-#define CCOSEL_CPU      0x1e
+#define CCOSEL_CPU1     0x1a
+#define CCOSEL_CPU2     0x1c
+#define CCOSEL_CPU3     0x1e
 // Configurable clock output enable
 #define CCOEN           0x01
 

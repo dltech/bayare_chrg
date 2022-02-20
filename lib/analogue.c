@@ -18,6 +18,7 @@
 #include "system.h"
 #include "regs/adc_reg.h"
 #include "charger.h"
+#include "analogue.h"
 
 extern volatile setValueTyp setValue;
 volatile analogueTyp ana;
@@ -50,7 +51,7 @@ uint16_t voltToAdc(uint8_t volt)
 
 uint16_t ampToAdc(uint8_t amp)
 {
-    return ((uint16_t)volt * ADC_TO_AMP) / 10;
+    return ((uint16_t)amp * ADC_TO_AMP) / 10;
 }
 
 uint8_t getRv(uint8_t channel)

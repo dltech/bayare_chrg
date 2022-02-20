@@ -20,17 +20,14 @@
  */
 #include "gpio.h"
 
-
 #define PWM_PORT    GPIOD
 #define PWM_PIN     GPIO4
 
 void pwmInit(void);
 void setDutyCycle(uint16_t dut);
 uint16_t getDutyCycle(void);
-
 void incDutyCycle(void);
 void decDutyCycle(void);
 void pwmOff(void);
-
 
 #endif

@@ -50,7 +50,7 @@ uint8_t isPressed(uint8_t pin)
 
 void button1(void) __interrupt(EXTI1_ITN)
 {
-    but = isPressed(BUTTON1_PIN);
+    uint8_t but = isPressed(BUTTON1_PIN);
     if((but>0) && ((param.state == VOLT_STABLE) || \
        (param.state == VOLT_CHANGE) || (param.state == VOLT_SET)) ) {
         param.state = AMP_STABLE;
@@ -63,12 +63,12 @@ void button1(void) __interrupt(EXTI1_ITN)
 
 void button2(void) __interrupt(EXTI2_ITN)
 {
-    but = isPressed(BUTTON2_PIN);
-    if((but>0) && (param.state != AUTO_CHARGE))
+    uint8_t but = isPressed(BUTTON2_PIN);
+    if((but>0) && (param.state != AUTO_CHARGE)) {
         resetCharger();
         param.state == AUTO_CHARGE;
     }
-    if((but>0) && (param.state == AUTO_CHARGE))
+    if((but>0) && (param.state == AUTO_CHARGE)) {
         param.state == AMP_STABLE;
     }
 }

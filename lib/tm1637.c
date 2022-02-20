@@ -16,9 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#include "tm1637.h"
 #include "regs/tim_reg.h"
+#include "system.h"
+#include "tm1637.h"
 
 // little init functions as parts of main init function
 void tmPortInit(void);
@@ -37,7 +37,7 @@ void tmInit()
 {
     tmPortInit();
     tmDelayInit();
-    uint8_t data[DISPLAY_SIZE] = {};
+    uint8_t data[DISPLAY_SIZE] = {0};
     tmUpd(data);
     setBrightness(100);
 }
@@ -99,7 +99,7 @@ uint8_t pushByte(uint8_t byte)
     quaterTact();
     setPin(TM_PORT, TM_SCL);
     quaterTact();
-    if((GPIOA_IDR & (1 << TM_SDA)) > 0) {
+    if(readPin(TM_PORT,TM_SDA) > 0) {
         ret = 255;
     } else {
         ret = 0;

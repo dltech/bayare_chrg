@@ -13,3 +13,10 @@ fp-info-cache
 *.toc
 *.lst
 /vid
+*.asm
+*.lk
+*.lst
+*.map
+*.rel
+*.rst
+*.sym

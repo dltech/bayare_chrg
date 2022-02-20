@@ -18,7 +18,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+#include <stdint.h>
 #include "regs/interrupt_reg.h"
 
 // list of peripherial for enable function
@@ -39,7 +39,7 @@ void setPriority(uint8_t nInt, uint8_t level);
 // set maximal built in clock
 void clockTo16Hsi(void);
 // enable peripherial clocking
-viod enable(uint8_t periph);
+void enable(uint8_t periph);
 void delay(uint8_t ms);
 
 #endif
