@@ -22,7 +22,7 @@ INCLUDES  += -I $(REG_DIR)/
 
 #main information
 CC = sdcc
-CFLAGS = -opt-code-size -std-c99 -mstm8
+CFLAGS = --std-c99 -mstm8 --opt-code-size --allow-unsafe-read
 RELS = $(SOURCES:%.c=$(ODIR)/%.rel)
 
 #main rule

@@ -471,121 +471,20 @@ F 3 "~" H 5250 1300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Regulator_Linear:L78L33_SOT89 U4
-U 1 1 62099343
-P 8800 3150
-F 0 "U4" H 8950 3300 50  0000 C CNN
-F 1 "L78L33" H 8700 3300 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-89-3" H 8800 3350 50  0001 C CIN
-F 3 "http://www.st.com/content/ccc/resource/technical/document/datasheet/15/55/e5/aa/23/5b/43/fd/CD00000446.pdf/files/CD00000446.pdf/jcr:content/translations/en.CD00000446.pdf" H 8800 3100 50  0001 C CNN
-	1    8800 3150
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:+24V #PWR0108
 U 1 1 620A80C2
-P 7700 3100
-F 0 "#PWR0108" H 7700 2950 50  0001 C CNN
-F 1 "+24V" H 7715 3273 50  0000 C CNN
-F 2 "" H 7700 3100 50  0001 C CNN
-F 3 "" H 7700 3100 50  0001 C CNN
-	1    7700 3100
+P 7700 3050
+F 0 "#PWR0108" H 7700 2900 50  0001 C CNN
+F 1 "+24V" H 7715 3223 50  0000 C CNN
+F 2 "" H 7700 3050 50  0001 C CNN
+F 3 "" H 7700 3050 50  0001 C CNN
+	1    7700 3050
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8450 3150 8500 3150
-$Comp
-L Device:C C7
-U 1 1 620AFB1A
-P 8250 3300
-F 0 "C7" H 8250 3400 50  0000 L CNN
-F 1 "10uF" H 8250 3200 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 8288 3150 50  0001 C CNN
-F 3 "~" H 8250 3300 50  0001 C CNN
-	1    8250 3300
-	1    0    0    -1  
-$EndComp
-Connection ~ 8450 3150
-$Comp
-L Device:C C8
-U 1 1 620B2675
-P 8450 3300
-F 0 "C8" H 8450 3400 50  0000 L CNN
-F 1 "0.1uF" H 8450 3200 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 8488 3150 50  0001 C CNN
-F 3 "~" H 8450 3300 50  0001 C CNN
-	1    8450 3300
-	1    0    0    -1  
-$EndComp
+	7700 3050 7700 3100
 Wire Wire Line
-	8450 3150 8250 3150
-$Comp
-L Device:C C9
-U 1 1 620C1410
-P 9150 3300
-F 0 "C9" H 9150 3400 50  0000 L CNN
-F 1 "10uF" H 9150 3200 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 9188 3150 50  0001 C CNN
-F 3 "~" H 9150 3300 50  0001 C CNN
-	1    9150 3300
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9100 3150 9150 3150
-$Comp
-L Device:R R8
-U 1 1 620CB81D
-P 7900 3150
-F 0 "R8" V 8000 3000 50  0000 L CNN
-F 1 "10R" V 7900 3050 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 7830 3150 50  0001 C CNN
-F 3 "~" H 7900 3150 50  0001 C CNN
-	1    7900 3150
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	7700 3100 7700 3150
-Wire Wire Line
-	7700 3150 7750 3150
-Wire Wire Line
-	8050 3150 8100 3150
-Connection ~ 8250 3150
-Connection ~ 8100 3150
-Wire Wire Line
-	8100 3150 8250 3150
-$Comp
-L power:GND #PWR0109
-U 1 1 620E93E4
-P 9150 3550
-F 0 "#PWR0109" H 9150 3300 50  0001 C CNN
-F 1 "GND" H 9155 3377 50  0000 C CNN
-F 2 "" H 9150 3550 50  0001 C CNN
-F 3 "" H 9150 3550 50  0001 C CNN
-	1    9150 3550
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9150 3550 9150 3500
-Wire Wire Line
-	9150 3500 8800 3500
-Wire Wire Line
-	8800 3500 8800 3450
-Connection ~ 9150 3500
-Wire Wire Line
-	9150 3500 9150 3450
-Wire Wire Line
-	8800 3500 8450 3500
-Wire Wire Line
-	8450 3500 8450 3450
-Connection ~ 8800 3500
-Wire Wire Line
-	8450 3500 8250 3500
-Wire Wire Line
-	8250 3500 8250 3450
-Connection ~ 8450 3500
-Wire Wire Line
-	8250 3500 8100 3500
-Connection ~ 8250 3500
+	7700 3100 7750 3100
 $Comp
 L power:+VSW #PWR0110
 U 1 1 62135C85
@@ -715,8 +614,6 @@ Wire Wire Line
 	2150 2700 2200 2700
 Wire Wire Line
 	2750 2950 2150 2950
-NoConn ~ 2750 3650
-NoConn ~ 2750 3550
 NoConn ~ 2750 3450
 NoConn ~ 2750 3350
 NoConn ~ 2750 3250
@@ -809,20 +706,6 @@ F 3 "" H 8800 4650 50  0001 C CNN
 	1    8800 4650
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+3.3V #PWR0123
-U 1 1 623818F4
-P 9150 3100
-F 0 "#PWR0123" H 9150 2950 50  0001 C CNN
-F 1 "+3.3V" H 9165 3273 50  0000 C CNN
-F 2 "" H 9150 3100 50  0001 C CNN
-F 3 "" H 9150 3100 50  0001 C CNN
-	1    9150 3100
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9150 3150 9150 3100
-Connection ~ 9150 3150
 $Comp
 L power:+3.3V #PWR0124
 U 1 1 6238BC0F
@@ -961,9 +844,7 @@ Wire Wire Line
 Connection ~ 7150 3150
 Wire Wire Line
 	7350 2800 7400 2800
-Wire Wire Line
-	7600 3150 7700 3150
-Connection ~ 7700 3150
+Connection ~ 7700 3100
 $Comp
 L Device:C_Polarized_US C6
 U 1 1 62239E1E
@@ -985,13 +866,9 @@ Connection ~ 6900 3500
 Wire Wire Line
 	7400 3550 7400 3500
 Connection ~ 7400 3500
-Wire Wire Line
-	7400 3100 7600 3100
 Connection ~ 7400 3100
 Wire Wire Line
 	7400 3100 7400 2800
-Wire Wire Line
-	7600 3100 7600 3150
 Wire Wire Line
 	2150 2500 2200 2500
 $Comp
@@ -1196,19 +1073,6 @@ F 3 "~" H 6100 2450 50  0001 C CNN
 	1    6100 2450
 	-1   0    0    1   
 $EndComp
-$Comp
-L Diode:BZX84Cxx D8
-U 1 1 6207886C
-P 8100 3300
-F 0 "D8" V 8000 3200 50  0000 L CNN
-F 1 "PESD1CAN" H 8050 3200 50  0000 L CNN
-F 2 "Diode_SMD:D_SOT-23_ANK" H 8100 3125 50  0001 C CNN
-F 3 "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bzx84c2v4.pdf" H 8100 3300 50  0001 C CNN
-	1    8100 3300
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	8100 3500 8100 3450
 $Comp
 L local:TM1637 U1
 U 1 1 60F48864
@@ -1446,4 +1310,149 @@ Wire Wire Line
 Wire Wire Line
 	4300 3350 3950 3350
 Connection ~ 4300 3900
+Wire Wire Line
+	8100 3450 8100 3400
+$Comp
+L Diode:BZX84Cxx D8
+U 1 1 6207886C
+P 8100 3250
+F 0 "D8" V 8000 3150 50  0000 L CNN
+F 1 "PESD1CAN" H 8050 3150 50  0000 L CNN
+F 2 "Diode_SMD:D_SOT-23_ANK" H 8100 3075 50  0001 C CNN
+F 3 "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bzx84c2v4.pdf" H 8100 3250 50  0001 C CNN
+	1    8100 3250
+	0    1    1    0   
+$EndComp
+Connection ~ 9150 3100
+Wire Wire Line
+	9150 3100 9150 3050
+$Comp
+L power:+3.3V #PWR0123
+U 1 1 623818F4
+P 9150 3050
+F 0 "#PWR0123" H 9150 2900 50  0001 C CNN
+F 1 "+3.3V" H 9165 3223 50  0000 C CNN
+F 2 "" H 9150 3050 50  0001 C CNN
+F 3 "" H 9150 3050 50  0001 C CNN
+	1    9150 3050
+	1    0    0    -1  
+$EndComp
+Connection ~ 8250 3450
+Wire Wire Line
+	8250 3450 8100 3450
+Connection ~ 8450 3450
+Wire Wire Line
+	8250 3450 8250 3400
+Wire Wire Line
+	8450 3450 8250 3450
+Connection ~ 8800 3450
+Wire Wire Line
+	8450 3450 8450 3400
+Wire Wire Line
+	8800 3450 8450 3450
+Wire Wire Line
+	9150 3450 9150 3400
+Connection ~ 9150 3450
+Wire Wire Line
+	8800 3450 8800 3400
+Wire Wire Line
+	9150 3450 8800 3450
+Wire Wire Line
+	9150 3500 9150 3450
+$Comp
+L power:GND #PWR0109
+U 1 1 620E93E4
+P 9150 3500
+F 0 "#PWR0109" H 9150 3250 50  0001 C CNN
+F 1 "GND" H 9155 3327 50  0000 C CNN
+F 2 "" H 9150 3500 50  0001 C CNN
+F 3 "" H 9150 3500 50  0001 C CNN
+	1    9150 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8100 3100 8250 3100
+Connection ~ 8100 3100
+Connection ~ 8250 3100
+Wire Wire Line
+	8050 3100 8100 3100
+$Comp
+L Device:R R8
+U 1 1 620CB81D
+P 7900 3100
+F 0 "R8" V 8000 2950 50  0000 L CNN
+F 1 "10R" V 7900 3000 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 7830 3100 50  0001 C CNN
+F 3 "~" H 7900 3100 50  0001 C CNN
+	1    7900 3100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	9100 3100 9150 3100
+$Comp
+L Device:C C9
+U 1 1 620C1410
+P 9150 3250
+F 0 "C9" H 9150 3350 50  0000 L CNN
+F 1 "10uF" H 9150 3150 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 9188 3100 50  0001 C CNN
+F 3 "~" H 9150 3250 50  0001 C CNN
+	1    9150 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8450 3100 8250 3100
+$Comp
+L Device:C C8
+U 1 1 620B2675
+P 8450 3250
+F 0 "C8" H 8450 3350 50  0000 L CNN
+F 1 "0.1uF" H 8450 3150 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 8488 3100 50  0001 C CNN
+F 3 "~" H 8450 3250 50  0001 C CNN
+	1    8450 3250
+	1    0    0    -1  
+$EndComp
+Connection ~ 8450 3100
+$Comp
+L Device:C C7
+U 1 1 620AFB1A
+P 8250 3250
+F 0 "C7" H 8250 3350 50  0000 L CNN
+F 1 "10uF" H 8250 3150 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 8288 3100 50  0001 C CNN
+F 3 "~" H 8250 3250 50  0001 C CNN
+	1    8250 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8450 3100 8500 3100
+$Comp
+L Regulator_Linear:L78L33_SOT89 U4
+U 1 1 62099343
+P 8800 3100
+F 0 "U4" H 8950 3250 50  0000 C CNN
+F 1 "L78L33" H 8700 3250 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-89-3" H 8800 3300 50  0001 C CIN
+F 3 "http://www.st.com/content/ccc/resource/technical/document/datasheet/15/55/e5/aa/23/5b/43/fd/CD00000446.pdf/files/CD00000446.pdf/jcr:content/translations/en.CD00000446.pdf" H 8800 3050 50  0001 C CNN
+	1    8800 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7400 3100 7700 3100
+$Comp
+L Connector_Generic:Conn_01x02 J5
+U 1 1 621F9B6F
+P 1900 3650
+F 0 "J5" H 1980 3642 50  0000 L CNN
+F 1 "uart" H 1850 3750 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1900 3650 50  0001 C CNN
+F 3 "~" H 1900 3650 50  0001 C CNN
+	1    1900 3650
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2750 3550 2100 3550
+Wire Wire Line
+	2100 3650 2750 3650
 $EndSCHEMATC

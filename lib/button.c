@@ -64,11 +64,11 @@ void button1(void) __interrupt(EXTI1_ITN)
 void button2(void) __interrupt(EXTI2_ITN)
 {
     uint8_t but = isPressed(BUTTON2_PIN);
+    if((but>0) && (param.state == AUTO_CHARGE)) {
+        param.state == AMP_STABLE;
+    }
     if((but>0) && (param.state != AUTO_CHARGE)) {
         resetCharger();
         param.state == AUTO_CHARGE;
-    }
-    if((but>0) && (param.state == AUTO_CHARGE)) {
-        param.state == AMP_STABLE;
     }
 }
