@@ -1,6 +1,5 @@
 /*
- * printf for TM1637 display-driver based 7-segment displays
- * connected to STM32.
+ * Part of old-school 8-bit transformer battery charger. Program UART.
  *
  * Copyright 2021 Mikhail Belkin <dltech174@gmail.com>
  *
@@ -18,7 +17,7 @@
  */
 #include "uart.h"
 
-void uartDelayInit();
+void uartIrqInit();
 void uartDelayUpdate();
 
 void uartIrqInit()
@@ -26,11 +25,13 @@ void uartIrqInit()
     // timer for tacts
     enable(TIM4);
     TIM4_CR1  |= CEN;
-    TIM4_PSCR  = 31;
-    TIM4_ARR   = 1;
+    TIM4_PSCR  = MAX_PSC;
+    TIM4_ARR   = UART_TIM_ARR;
 }
 
 void uartDelayUpdate()
 {
+    TIM4_PSCR  = MAX_PSC;
+    TIM4_ARR   = UART_TIM_ARR;
     TIM4_EGR   |= UG;
 }

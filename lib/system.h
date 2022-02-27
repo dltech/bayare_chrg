@@ -21,6 +21,8 @@
 #include <stdint.h>
 #include "regs/interrupt_reg.h"
 
+#define FSYSTEM     16000000
+
 // list of peripherial for enable function
 enum enablePeriph {
     TIM1,

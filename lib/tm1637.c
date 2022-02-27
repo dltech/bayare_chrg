@@ -1,6 +1,5 @@
 /*
- * printf for TM1637 display-driver based 7-segment displays
- * connected to STM32.
+ * TM1637 low level driver.
  *
  * Copyright 2021 Mikhail Belkin <dltech174@gmail.com>
  *

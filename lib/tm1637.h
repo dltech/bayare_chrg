@@ -1,8 +1,7 @@
 #ifndef H_TM1637
 #define H_TM1637
 /*
- * printf for TM1637 display-driver based 7-segment displays
- * connected to STM8.
+ * TM1637 low level driver.
  *
  * Copyright 2022 Mikhail Belkin <dltech174@gmail.com>
  *
