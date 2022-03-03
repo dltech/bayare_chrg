@@ -51,20 +51,20 @@ void tmDelayInit()
     // timer for tacts
     enable(TIM4);
     TIM4_CR1  |= CEN;
-    TIM4_PSCR  = 31;
-    TIM4_ARR   = 1;
     tmDelayUpdate();
 }
 
 void tmDelayUpdate()
 {
-    TIM4_EGR   |= UG;
+    TIM4_PSCR  = TIM4_MAX_PSCR;
+    TIM4_ARR   = 4;
+    TIM4_EGR  |= UG;
 }
 
 void quaterTact()
 {
     uint8_t timeout = 255;
-    TIM4_EGR  |= UG;
+    tmDelayUpdate();
     TIM4_SR = 0;
     while( (TIM4_SR == 0) && (--timeout > 0) );
 }

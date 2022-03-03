@@ -15,7 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "regs/tim_reg.h"
 #include "uart.h"
+
+uartParamTyp uartProp;
 
 void uartIrqInit();
 void uartDelayUpdate();
@@ -27,11 +30,18 @@ void uartIrqInit()
     TIM4_CR1  |= CEN;
     TIM4_PSCR  = MAX_PSC;
     TIM4_ARR   = UART_TIM_ARR;
+    TIM4_IER   = UIE;
+    setPriority(TIM4_UPD_ITN, 1);
 }
 
 void uartDelayUpdate()
 {
     TIM4_PSCR  = MAX_PSC;
     TIM4_ARR   = UART_TIM_ARR;
-    TIM4_EGR   |= UG;
+    TIM4_EGR  |= UG;
+}
+
+void RxTx(void) __interrupt(TIM1_UPD_ITN)
+{
+    if(uartProp.rxCnt == STOP_RX)
 }

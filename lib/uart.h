@@ -17,9 +17,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define BAUDRATE        9600
+#include "system.h"
 
+
+#define BAUDRATE        9600
 #define MAX_PSC         7
-#define UART_TIM_ARR    119
+#define UART_TIM_ARR    FSYSTEM / BAUDRATE / MAX_PSC / 2//119
+
+enum uartState{
+    START_RX,
+    DATA_RX,
+    STOP_RX,
+    DATA_TX,
+};
+
+typedef struct {
+    uint8_t rxCnt;
+    uint8_t txCnt;
+    uint8_t rxByte;
+    uint8_t txByte;
+} uartParamTyp;
+
+void progUartInit();
+
 
 #endif

@@ -834,6 +834,7 @@
 /* Prescaler register */
 #define TIM4_PSCR   MMIO32(TIM4_BASE + 0x07)
 #define TIM6_PSCR   MMIO32(TIM6_BASE + 0x07)
+#define TIM4_MAX_PSCR   7
 
 /* Auto-reload register */
 #define TIM4_ARR    MMIO32(TIM4_BASE + 0x08)

@@ -1,6 +1,6 @@
 /*
  * Part of old-school 8-bit transformer battery charger. System init functions
- *  of STM8.
+ * of STM8.
  *
  * Copyright 2022 Mikhail Belkin <dltech174@gmail.com>
  *
