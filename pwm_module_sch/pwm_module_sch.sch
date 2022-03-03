@@ -386,7 +386,7 @@ $Comp
 L Amplifier_Operational:LM358 U3
 U 1 1 62109DDC
 P 4750 800
-F 0 "U3" H 4750 600 50  0000 C CNN
+F 0 "U3" H 4850 650 50  0000 C CNN
 F 1 "LM358" H 4700 800 50  0000 C CNN
 F 2 "Package_SO:SO-8_3.9x4.9mm_P1.27mm" H 4750 800 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm2904-n.pdf" H 4750 800 50  0001 C CNN
@@ -398,33 +398,18 @@ Wire Wire Line
 Wire Wire Line
 	5100 700  5100 550 
 Wire Wire Line
-	5100 550  4400 550 
-Wire Wire Line
 	4400 550  4400 800 
 Wire Wire Line
 	4400 800  4450 800 
 $Comp
-L Device:R R5
-U 1 1 62070859
-P 5100 1050
-F 0 "R5" V 5200 1050 50  0000 L CNN
-F 1 "0.1R" V 5100 950 50  0000 L CNN
-F 2 "Resistor_SMD:R_1210_3225Metric" V 5030 1050 50  0001 C CNN
-F 3 "~" H 5100 1050 50  0001 C CNN
-	1    5100 1050
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	5100 900  5050 900 
-$Comp
 L power:GND #PWR0107
 U 1 1 6208BD4F
-P 5100 1250
-F 0 "#PWR0107" H 5100 1000 50  0001 C CNN
-F 1 "GND" H 5000 1150 50  0000 C CNN
-F 2 "" H 5100 1250 50  0001 C CNN
-F 3 "" H 5100 1250 50  0001 C CNN
-	1    5100 1250
+P 5350 1250
+F 0 "#PWR0107" H 5350 1000 50  0001 C CNN
+F 1 "GND" H 5200 1200 50  0000 C CNN
+F 2 "" H 5350 1250 50  0001 C CNN
+F 3 "" H 5350 1250 50  0001 C CNN
+	1    5350 1250
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -829,12 +814,12 @@ Wire Wire Line
 $Comp
 L power:-VSW #PWR0132
 U 1 1 6210BE8B
-P 5250 850
-F 0 "#PWR0132" H 5250 950 50  0001 C CNN
-F 1 "-VSW" H 5250 1000 50  0000 C CNN
-F 2 "" H 5250 850 50  0001 C CNN
-F 3 "" H 5250 850 50  0001 C CNN
-	1    5250 850 
+P 5350 850
+F 0 "#PWR0132" H 5350 950 50  0001 C CNN
+F 1 "-VSW" H 5350 1000 50  0000 C CNN
+F 2 "" H 5350 850 50  0001 C CNN
+F 3 "" H 5350 850 50  0001 C CNN
+	1    5350 850 
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -863,25 +848,14 @@ Connection ~ 4400 800
 $Comp
 L Diode:BZX84Cxx D3
 U 1 1 622739ED
-P 5250 1050
-F 0 "D3" V 5150 950 50  0000 L CNN
-F 1 "BZX84C5V6" H 5100 1150 50  0000 L CNN
-F 2 "Diode_SMD:D_SOT-23_ANK" H 5250 875 50  0001 C CNN
-F 3 "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bzx84c2v4.pdf" H 5250 1050 50  0001 C CNN
-	1    5250 1050
+P 5200 1050
+F 0 "D3" H 5300 1100 50  0000 L CNN
+F 1 "BZX84C5V6" V 5300 600 50  0000 L CNN
+F 2 "Diode_SMD:D_SOT-23_ANK" H 5200 875 50  0001 C CNN
+F 3 "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bzx84c2v4.pdf" H 5200 1050 50  0001 C CNN
+	1    5200 1050
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	5100 900  5250 900 
-Connection ~ 5100 900 
-Wire Wire Line
-	5100 1200 5100 1250
-Wire Wire Line
-	5250 1200 5250 1250
-Wire Wire Line
-	5250 1250 5100 1250
-Connection ~ 5100 1250
-Connection ~ 5250 900 
 $Comp
 L Device:C C4
 U 1 1 623E1443
@@ -919,8 +893,6 @@ F 3 "" H 4500 2100 50  0001 C CNN
 	1    4500 2100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5250 900  5250 850 
 Wire Wire Line
 	2400 4300 2400 4200
 Wire Wire Line
@@ -1471,9 +1443,69 @@ Wire Wire Line
 Wire Wire Line
 	4050 800  4050 3050
 Wire Wire Line
-	5500 900  5500 2350
-Wire Wire Line
-	5250 900  5500 900 
-Wire Wire Line
 	4000 800  4000 2950
+$Comp
+L Device:R R14
+U 1 1 622FAFE9
+P 5350 1050
+F 0 "R14" V 5300 1150 50  0000 L CNN
+F 1 "0.01R" V 5350 950 50  0000 L CNN
+F 2 "Resistor_THT:R_Bare_Metal_Element_L12.4mm_W4.8mm_P11.40mm" V 5280 1050 50  0001 C CNN
+F 3 "~" H 5350 1050 50  0001 C CNN
+	1    5350 1050
+	-1   0    0    1   
+$EndComp
+Connection ~ 5200 900 
+Wire Wire Line
+	5200 1200 5200 1250
+Wire Wire Line
+	5450 2350 5500 2350
+Wire Wire Line
+	5200 900  5350 900 
+Wire Wire Line
+	5450 900  5450 2350
+$Comp
+L Device:R R5
+U 1 1 62418FC9
+P 4750 550
+F 0 "R5" V 4800 350 50  0000 L CNN
+F 1 "100k" V 4750 450 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 4680 550 50  0001 C CNN
+F 3 "~" H 4750 550 50  0001 C CNN
+	1    4750 550 
+	0    -1   -1   0   
+$EndComp
+Connection ~ 5350 900 
+Wire Wire Line
+	5350 900  5450 900 
+Wire Wire Line
+	5200 1250 5350 1250
+Wire Wire Line
+	5050 900  5200 900 
+Wire Wire Line
+	5350 1250 5350 1200
+Connection ~ 5350 1250
+$Comp
+L Device:R R13
+U 1 1 62467885
+P 5100 850
+F 0 "R13" V 5150 650 50  0000 L CNN
+F 1 "5.1k" V 5100 750 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 5030 850 50  0001 C CNN
+F 3 "~" H 5100 850 50  0001 C CNN
+	1    5100 850 
+	1    0    0    -1  
+$EndComp
+Connection ~ 5100 700 
+Wire Wire Line
+	5100 1000 5100 1250
+Wire Wire Line
+	5100 1250 5200 1250
+Connection ~ 5200 1250
+Wire Wire Line
+	5350 900  5350 850 
+Wire Wire Line
+	4400 550  4600 550 
+Wire Wire Line
+	4900 550  5100 550 
 $EndSCHEMATC
