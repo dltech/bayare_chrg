@@ -298,12 +298,12 @@ $Comp
 L local:2N60 Q2
 U 1 1 620A7265
 P 4950 2700
-F 0 "Q2" V 4900 2850 50  0000 C CNN
+F 0 "Q2" V 4900 2550 50  0000 C CNN
 F 1 "IRFZ44N" V 5200 2700 50  0000 C CNN
 F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 5150 2625 50  0001 L CIN
 F 3 "" H 4950 2700 50  0001 L CNN
 	1    4950 2700
-	0    1    -1   0   
+	0    -1   -1   0   
 $EndComp
 $Comp
 L Device:R R4
@@ -328,7 +328,7 @@ F 3 "" H 4550 4250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Potentiometer RV1
+L pwm_module_sch-rescue:R_Potentiometer-Device RV1
 U 1 1 620D21AF
 P 4550 3900
 F 0 "RV1" H 4480 3946 50  0000 R CNN
@@ -339,7 +339,7 @@ F 3 "~" H 4550 3900 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Device:R_Potentiometer RV2
+L pwm_module_sch-rescue:R_Potentiometer-Device RV2
 U 1 1 620D31F7
 P 4550 4700
 F 0 "RV2" H 4480 4746 50  0000 R CNN
@@ -667,7 +667,7 @@ Wire Wire Line
 Wire Wire Line
 	8800 4650 8800 4600
 $Comp
-L Device:D_Schottky_Dual_CommonCathode_AKA D5
+L pwm_module_sch-rescue:D_Schottky_Dual_CommonCathode_AKA-Device D5
 U 1 1 6205359E
 P 6700 3150
 F 0 "D5" H 6850 3250 50  0000 C CNN
@@ -678,7 +678,7 @@ F 3 "~" H 6700 3150 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:D_Schottky_Dual_CommonCathode_AKA D6
+L pwm_module_sch-rescue:D_Schottky_Dual_CommonCathode_AKA-Device D6
 U 1 1 6207CB2A
 P 6900 3150
 F 0 "D6" H 7050 3250 50  0000 C CNN
@@ -718,7 +718,7 @@ F 3 "" H 7400 3550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:D_Schottky_Dual_CommonCathode_AKA D7
+L pwm_module_sch-rescue:D_Schottky_Dual_CommonCathode_AKA-Device D7
 U 1 1 62058078
 P 7150 2800
 F 0 "D7" H 7400 2850 50  0000 C CNN
@@ -726,7 +726,7 @@ F 1 "." V 7150 2926 50  0000 C CNN
 F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 7150 2800 50  0001 C CNN
 F 3 "~" H 7150 2800 50  0001 C CNN
 	1    7150 2800
-	0    -1   -1   0   
+	0    -1   1    0   
 $EndComp
 Wire Wire Line
 	7100 3150 7150 3150
@@ -746,7 +746,7 @@ Wire Wire Line
 	7350 2800 7400 2800
 Connection ~ 7500 3100
 $Comp
-L Device:C_Polarized_US C6
+L pwm_module_sch-rescue:C_Polarized_US-Device C6
 U 1 1 62239E1E
 P 7400 3300
 F 0 "C6" H 7400 3400 50  0000 L CNN
@@ -817,7 +817,7 @@ F 3 "" H 5400 850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Polarized_US C5
+L pwm_module_sch-rescue:C_Polarized_US-Device C5
 U 1 1 62166329
 P 5200 2950
 F 0 "C5" H 5200 3050 50  0000 L CNN
@@ -922,8 +922,6 @@ F 3 "" H 2850 7100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6800 2800 6900 2800
-Wire Wire Line
 	3250 7550 5300 7550
 Wire Wire Line
 	5300 5500 5300 7550
@@ -1005,8 +1003,6 @@ Wire Wire Line
 Wire Wire Line
 	2200 3050 2200 6250
 Wire Wire Line
-	4200 3450 4200 3500
-Wire Wire Line
 	4000 3250 3950 3250
 $Comp
 L local:AO3400 Q1
@@ -1085,8 +1081,6 @@ Connection ~ 4350 3250
 Wire Wire Line
 	4350 2900 4350 2850
 Wire Wire Line
-	4700 3450 4700 3500
-Wire Wire Line
 	4950 2900 4950 3000
 Wire Wire Line
 	4950 3000 4700 3000
@@ -1102,10 +1096,6 @@ Wire Wire Line
 Connection ~ 4700 2600
 Wire Wire Line
 	4700 2600 4700 2550
-Wire Wire Line
-	4700 3500 5200 3500
-Wire Wire Line
-	4350 3900 4350 3550
 Connection ~ 4350 3900
 Wire Wire Line
 	7900 3450 7900 3400
@@ -1280,7 +1270,6 @@ Wire Wire Line
 	5300 2600 5350 2600
 Wire Wire Line
 	5200 3100 5200 3500
-Connection ~ 5200 3500
 Wire Wire Line
 	5350 3100 5350 3500
 Wire Wire Line
@@ -1504,31 +1493,25 @@ NoConn ~ 2750 3650
 $Comp
 L Device:R R16
 U 1 1 623DEA71
-P 4200 3650
-F 0 "R16" V 4300 3650 50  0000 L CNN
-F 1 "75" V 4200 3550 50  0000 L CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" V 4130 3650 50  0001 C CNN
-F 3 "~" H 4200 3650 50  0001 C CNN
-	1    4200 3650
+P 4350 4550
+F 0 "R16" V 4450 4550 50  0000 L CNN
+F 1 "75" V 4350 4450 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 4280 4550 50  0001 C CNN
+F 3 "~" H 4350 4550 50  0001 C CNN
+	1    4350 4550
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	4200 3800 4200 4400
 $Comp
 L Device:R R15
 U 1 1 623E236F
-P 4150 3350
-F 0 "R15" V 4050 3150 50  0000 L CNN
-F 1 "75" V 4150 3250 50  0000 L CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" V 4080 3350 50  0001 C CNN
-F 3 "~" H 4150 3350 50  0001 C CNN
-	1    4150 3350
-	0    -1   -1   0   
+P 4350 3750
+F 0 "R15" V 4250 3550 50  0000 L CNN
+F 1 "75" V 4350 3650 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 4280 3750 50  0001 C CNN
+F 3 "~" H 4350 3750 50  0001 C CNN
+	1    4350 3750
+	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4000 3350 3950 3350
-Wire Wire Line
-	4300 3350 4350 3350
 Wire Wire Line
 	4350 3350 4350 3550
 Connection ~ 4350 3550
@@ -1549,10 +1532,21 @@ Wire Wire Line
 	4350 5000 4550 5000
 Wire Wire Line
 	4200 4400 4350 4400
-Wire Wire Line
-	4350 4700 4350 4400
 Connection ~ 4350 4700
 Connection ~ 4350 4400
 Wire Wire Line
 	4350 4400 4850 4400
+Wire Wire Line
+	4200 3450 4200 4400
+Wire Wire Line
+	4350 3600 4350 3550
+Wire Wire Line
+	3950 3350 4350 3350
+Wire Wire Line
+	4700 3450 4700 3500
+Wire Wire Line
+	4700 3500 5200 3500
+Connection ~ 5200 3500
+Wire Wire Line
+	6800 2800 6900 2800
 $EndSCHEMATC

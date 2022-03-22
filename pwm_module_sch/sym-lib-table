@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name local)(type Legacy)(uri /home/dltech/src/repair/blog_examples/tm/tm_sch/local.lib)(options "")(descr ""))
+  (lib (name pwm_module_sch-rescue)(type Legacy)(uri ${KIPRJMOD}/pwm_module_sch-rescue.lib)(options "")(descr ""))
 )
