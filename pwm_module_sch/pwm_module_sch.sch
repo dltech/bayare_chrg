@@ -328,28 +328,6 @@ F 3 "" H 4550 4250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L pwm_module_sch-rescue:R_Potentiometer-Device-pwm_module_sch-rescue RV1
-U 1 1 620D21AF
-P 4550 3900
-F 0 "RV1" H 4480 3946 50  0000 R CNN
-F 1 "." H 4480 3855 50  0000 R CNN
-F 2 "pwm_module:SP3-4" H 4550 3900 50  0001 C CNN
-F 3 "~" H 4550 3900 50  0001 C CNN
-	1    4550 3900
-	-1   0    0    1   
-$EndComp
-$Comp
-L pwm_module_sch-rescue:R_Potentiometer-Device-pwm_module_sch-rescue RV2
-U 1 1 620D31F7
-P 4550 4700
-F 0 "RV2" H 4480 4746 50  0000 R CNN
-F 1 "." H 4480 4655 50  0000 R CNN
-F 2 "pwm_module:SP3-4" H 4550 4700 50  0001 C CNN
-F 3 "~" H 4550 4700 50  0001 C CNN
-	1    4550 4700
-	-1   0    0    1   
-$EndComp
-$Comp
 L Switch:SW_Push SW2
 U 1 1 620D6155
 P 2400 2700
@@ -411,18 +389,18 @@ $EndComp
 $Comp
 L power:+24V #PWR0108
 U 1 1 620A80C2
-P 8150 3050
-F 0 "#PWR0108" H 8150 2900 50  0001 C CNN
-F 1 "+24V" H 8165 3223 50  0000 C CNN
-F 2 "" H 8150 3050 50  0001 C CNN
-F 3 "" H 8150 3050 50  0001 C CNN
-	1    8150 3050
+P 8050 2500
+F 0 "#PWR0108" H 8050 2350 50  0001 C CNN
+F 1 "+24V" H 8065 2673 50  0000 C CNN
+F 2 "" H 8050 2500 50  0001 C CNN
+F 3 "" H 8050 2500 50  0001 C CNN
+	1    8050 2500
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8150 3050 8150 3100
+	8050 2500 8050 2550
 Wire Wire Line
-	8150 3100 8200 3100
+	8050 2550 8100 2550
 $Comp
 L power:+VSW #PWR0112
 U 1 1 6218088D
@@ -667,108 +645,31 @@ Wire Wire Line
 Wire Wire Line
 	9450 4650 9450 4600
 $Comp
-L pwm_module_sch-rescue:D_Schottky_Dual_CommonCathode_AKA-Device-pwm_module_sch-rescue D5
-U 1 1 6205359E
-P 7350 3150
-F 0 "D5" H 7500 3250 50  0000 C CNN
-F 1 "." H 7350 3276 50  0000 C CNN
-F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 7350 3150 50  0001 C CNN
-F 3 "~" H 7350 3150 50  0001 C CNN
-	1    7350 3150
-	0    1    1    0   
-$EndComp
-$Comp
-L pwm_module_sch-rescue:D_Schottky_Dual_CommonCathode_AKA-Device-pwm_module_sch-rescue D6
-U 1 1 6207CB2A
-P 7550 3150
-F 0 "D6" H 7700 3250 50  0000 C CNN
-F 1 "." H 7550 3276 50  0000 C CNN
-F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 7550 3150 50  0001 C CNN
-F 3 "~" H 7550 3150 50  0001 C CNN
-	1    7550 3150
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	7550 2850 7550 2800
-Wire Wire Line
-	7350 2800 7350 2850
-Wire Wire Line
-	7450 2800 7450 3500
-Wire Wire Line
-	7450 3500 7350 3500
-Wire Wire Line
-	7350 3500 7350 3450
-Connection ~ 7450 2800
-Wire Wire Line
-	7450 2800 7350 2800
-Wire Wire Line
-	7450 3500 7550 3500
-Wire Wire Line
-	7550 3500 7550 3450
-Connection ~ 7450 3500
-$Comp
 L power:GND #PWR0128
 U 1 1 620B07FE
-P 8050 3550
-F 0 "#PWR0128" H 8050 3300 50  0001 C CNN
-F 1 "GND" H 8055 3377 50  0000 C CNN
-F 2 "" H 8050 3550 50  0001 C CNN
-F 3 "" H 8050 3550 50  0001 C CNN
-	1    8050 3550
+P 7950 3200
+F 0 "#PWR0128" H 7950 2950 50  0001 C CNN
+F 1 "GND" H 7955 3027 50  0000 C CNN
+F 2 "" H 7950 3200 50  0001 C CNN
+F 3 "" H 7950 3200 50  0001 C CNN
+	1    7950 3200
 	1    0    0    -1  
 $EndComp
+Connection ~ 8050 2550
 $Comp
-L pwm_module_sch-rescue:D_Schottky_Dual_CommonCathode_AKA-Device-pwm_module_sch-rescue D7
-U 1 1 62058078
-P 7800 2800
-F 0 "D7" H 8050 2850 50  0000 C CNN
-F 1 "." V 7800 2926 50  0000 C CNN
-F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 7800 2800 50  0001 C CNN
-F 3 "~" H 7800 2800 50  0001 C CNN
-	1    7800 2800
-	0    -1   1    0   
-$EndComp
-Wire Wire Line
-	7750 3150 7800 3150
-Wire Wire Line
-	7800 3150 7800 3100
-Wire Wire Line
-	7800 2500 7800 2450
-Wire Wire Line
-	7100 2450 7100 3150
-Wire Wire Line
-	7100 3150 7150 3150
-Connection ~ 7100 2450
-Wire Wire Line
-	7800 3150 7900 3150
-Connection ~ 7800 3150
-Wire Wire Line
-	8000 2800 8050 2800
-Connection ~ 8150 3100
-$Comp
-L pwm_module_sch-rescue:C_Polarized_US-Device-pwm_module_sch-rescue C6
+L Device:C_Polarized C6
 U 1 1 62239E1E
-P 8050 3300
-F 0 "C6" H 8050 3400 50  0000 L CNN
-F 1 "1000uF" H 7750 3200 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm" H 8050 3300 50  0001 C CNN
-F 3 "~" H 8050 3300 50  0001 C CNN
-	1    8050 3300
+P 7950 2750
+F 0 "C6" H 7950 2850 50  0000 L CNN
+F 1 "1000uF" H 7650 2650 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm" H 7950 2750 50  0001 C CNN
+F 3 "~" H 7950 2750 50  0001 C CNN
+	1    7950 2750
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8050 3150 8050 3100
-Wire Wire Line
-	7550 3500 8050 3500
-Wire Wire Line
-	8050 3500 8050 3450
-Connection ~ 7550 3500
-Wire Wire Line
-	8050 3550 8050 3500
-Connection ~ 8050 3500
-Connection ~ 8050 3100
-Wire Wire Line
-	8050 3100 8050 2800
+	7950 2600 7950 2550
+Connection ~ 7950 2550
 Wire Wire Line
 	2150 2500 2200 2500
 $Comp
@@ -817,7 +718,7 @@ F 3 "" H 5400 850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L pwm_module_sch-rescue:C_Polarized_US-Device-pwm_module_sch-rescue C5
+L Device:C_Polarized C5
 U 1 1 62166329
 P 5750 2800
 F 0 "C5" H 5750 2900 50  0000 L CNN
@@ -891,14 +792,6 @@ Wire Wire Line
 	2400 4300 2400 4200
 Wire Wire Line
 	2200 3050 2750 3050
-Wire Wire Line
-	6950 2450 7100 2450
-Wire Wire Line
-	7800 2450 7100 2450
-Wire Wire Line
-	7900 2350 7900 3150
-Wire Wire Line
-	6950 2350 7900 2350
 $Comp
 L Connector_Generic:Conn_01x02 J3
 U 1 1 625A841D
@@ -1098,131 +991,131 @@ Wire Wire Line
 	4700 2600 4700 2550
 Connection ~ 4350 3900
 Wire Wire Line
-	8550 3450 8550 3400
+	8450 2900 8450 2850
 $Comp
 L Diode:BZX84Cxx D8
 U 1 1 6207886C
-P 8550 3250
-F 0 "D8" V 8450 3150 50  0000 L CNN
-F 1 "PESD1CAN" H 8500 3150 50  0000 L CNN
-F 2 "Diode_SMD:D_SOT-23_ANK" H 8550 3075 50  0001 C CNN
-F 3 "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bzx84c2v4.pdf" H 8550 3250 50  0001 C CNN
-	1    8550 3250
+P 8450 2700
+F 0 "D8" V 8350 2600 50  0000 L CNN
+F 1 "PESD1CAN" H 8400 2600 50  0000 L CNN
+F 2 "Diode_SMD:D_SOT-23_ANK" H 8450 2525 50  0001 C CNN
+F 3 "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bzx84c2v4.pdf" H 8450 2700 50  0001 C CNN
+	1    8450 2700
 	0    1    1    0   
 $EndComp
-Connection ~ 9600 3100
+Connection ~ 9500 2550
 Wire Wire Line
-	9600 3100 9600 3050
+	9500 2550 9500 2500
 $Comp
 L power:+3.3V #PWR0123
 U 1 1 623818F4
-P 9600 3050
-F 0 "#PWR0123" H 9600 2900 50  0001 C CNN
-F 1 "+3.3V" H 9615 3223 50  0000 C CNN
-F 2 "" H 9600 3050 50  0001 C CNN
-F 3 "" H 9600 3050 50  0001 C CNN
-	1    9600 3050
+P 9500 2500
+F 0 "#PWR0123" H 9500 2350 50  0001 C CNN
+F 1 "+3.3V" H 9515 2673 50  0000 C CNN
+F 2 "" H 9500 2500 50  0001 C CNN
+F 3 "" H 9500 2500 50  0001 C CNN
+	1    9500 2500
 	1    0    0    -1  
 $EndComp
-Connection ~ 8700 3450
+Connection ~ 8600 2900
 Wire Wire Line
-	8700 3450 8550 3450
-Connection ~ 8900 3450
+	8600 2900 8450 2900
+Connection ~ 8800 2900
 Wire Wire Line
-	8700 3450 8700 3400
+	8600 2900 8600 2850
 Wire Wire Line
-	8900 3450 8700 3450
-Connection ~ 9250 3450
+	8800 2900 8600 2900
+Connection ~ 9150 2900
 Wire Wire Line
-	8900 3450 8900 3400
+	8800 2900 8800 2850
 Wire Wire Line
-	9250 3450 8900 3450
+	9150 2900 8800 2900
 Wire Wire Line
-	9600 3450 9600 3400
-Connection ~ 9600 3450
+	9500 2900 9500 2850
+Connection ~ 9500 2900
 Wire Wire Line
-	9250 3450 9250 3400
+	9150 2900 9150 2850
 Wire Wire Line
-	9600 3450 9250 3450
+	9500 2900 9150 2900
 Wire Wire Line
-	9600 3500 9600 3450
+	9500 2950 9500 2900
 $Comp
 L power:GND #PWR0109
 U 1 1 620E93E4
-P 9600 3500
-F 0 "#PWR0109" H 9600 3250 50  0001 C CNN
-F 1 "GND" H 9605 3327 50  0000 C CNN
-F 2 "" H 9600 3500 50  0001 C CNN
-F 3 "" H 9600 3500 50  0001 C CNN
-	1    9600 3500
+P 9500 2950
+F 0 "#PWR0109" H 9500 2700 50  0001 C CNN
+F 1 "GND" H 9505 2777 50  0000 C CNN
+F 2 "" H 9500 2950 50  0001 C CNN
+F 3 "" H 9500 2950 50  0001 C CNN
+	1    9500 2950
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8550 3100 8700 3100
-Connection ~ 8550 3100
-Connection ~ 8700 3100
+	8450 2550 8600 2550
+Connection ~ 8450 2550
+Connection ~ 8600 2550
 Wire Wire Line
-	8500 3100 8550 3100
+	8400 2550 8450 2550
 $Comp
 L Device:R R8
 U 1 1 620CB81D
-P 8350 3100
-F 0 "R8" V 8450 2950 50  0000 L CNN
-F 1 "10R" V 8350 3000 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 8280 3100 50  0001 C CNN
-F 3 "~" H 8350 3100 50  0001 C CNN
-	1    8350 3100
+P 8250 2550
+F 0 "R8" V 8350 2400 50  0000 L CNN
+F 1 "10R" V 8250 2450 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 8180 2550 50  0001 C CNN
+F 3 "~" H 8250 2550 50  0001 C CNN
+	1    8250 2550
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	9550 3100 9600 3100
+	9450 2550 9500 2550
 $Comp
 L Device:C C9
 U 1 1 620C1410
-P 9600 3250
-F 0 "C9" H 9600 3350 50  0000 L CNN
-F 1 "10uF" H 9600 3150 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 9638 3100 50  0001 C CNN
-F 3 "~" H 9600 3250 50  0001 C CNN
-	1    9600 3250
+P 9500 2700
+F 0 "C9" H 9500 2800 50  0000 L CNN
+F 1 "10uF" H 9500 2600 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 9538 2550 50  0001 C CNN
+F 3 "~" H 9500 2700 50  0001 C CNN
+	1    9500 2700
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8900 3100 8700 3100
+	8800 2550 8600 2550
 $Comp
 L Device:C C8
 U 1 1 620B2675
-P 8900 3250
-F 0 "C8" H 8900 3350 50  0000 L CNN
-F 1 "0.1uF" H 8900 3150 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 8938 3100 50  0001 C CNN
-F 3 "~" H 8900 3250 50  0001 C CNN
-	1    8900 3250
+P 8800 2700
+F 0 "C8" H 8800 2800 50  0000 L CNN
+F 1 "0.1uF" H 8800 2600 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 8838 2550 50  0001 C CNN
+F 3 "~" H 8800 2700 50  0001 C CNN
+	1    8800 2700
 	1    0    0    -1  
 $EndComp
-Connection ~ 8900 3100
+Connection ~ 8800 2550
 $Comp
 L Device:C C7
 U 1 1 620AFB1A
-P 8700 3250
-F 0 "C7" H 8700 3350 50  0000 L CNN
-F 1 "10uF" H 8700 3150 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 8738 3100 50  0001 C CNN
-F 3 "~" H 8700 3250 50  0001 C CNN
-	1    8700 3250
+P 8600 2700
+F 0 "C7" H 8600 2800 50  0000 L CNN
+F 1 "10uF" H 8600 2600 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 8638 2550 50  0001 C CNN
+F 3 "~" H 8600 2700 50  0001 C CNN
+	1    8600 2700
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8900 3100 8950 3100
+	8800 2550 8850 2550
 $Comp
 L Regulator_Linear:L78L33_SOT89 U4
 U 1 1 62099343
-P 9250 3100
-F 0 "U4" H 9400 3250 50  0000 C CNN
-F 1 "L78L33" H 9150 3250 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-89-3" H 9250 3300 50  0001 C CIN
-F 3 "http://www.st.com/content/ccc/resource/technical/document/datasheet/15/55/e5/aa/23/5b/43/fd/CD00000446.pdf/files/CD00000446.pdf/jcr:content/translations/en.CD00000446.pdf" H 9250 3050 50  0001 C CNN
-	1    9250 3100
+P 9150 2550
+F 0 "U4" H 9300 2700 50  0000 C CNN
+F 1 "L78L33" H 9050 2700 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-89-3" H 9150 2750 50  0001 C CIN
+F 3 "http://www.st.com/content/ccc/resource/technical/document/datasheet/15/55/e5/aa/23/5b/43/fd/CD00000446.pdf/files/CD00000446.pdf/jcr:content/translations/en.CD00000446.pdf" H 9150 2500 50  0001 C CNN
+	1    9150 2550
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1441,7 +1334,7 @@ Connection ~ 5200 1250
 Wire Wire Line
 	5200 1250 5250 1250
 Wire Wire Line
-	8050 3100 8150 3100
+	7950 2550 8050 2550
 Wire Wire Line
 	5500 3800 4850 3800
 Wire Wire Line
@@ -1508,8 +1401,6 @@ Wire Wire Line
 	3950 3350 4350 3350
 Wire Wire Line
 	4700 3450 4700 3500
-Wire Wire Line
-	7450 2800 7550 2800
 $Comp
 L Device:L L1
 U 1 1 623E4369
@@ -1521,27 +1412,9 @@ F 3 "~" H 5550 2600 50  0001 C CNN
 	1    5550 2600
 	0    -1   -1   0   
 $EndComp
-$Comp
-L pwm_module_sch-rescue:D_Schottky_Dual_CommonCathode_AKA-Device-pwm_module_sch-rescue D9
-U 1 1 6244CA00
-P 5450 3000
-F 0 "D9" H 5550 2900 50  0000 C CNN
-F 1 "." H 5450 3126 50  0000 C CNN
-F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 5450 3000 50  0001 C CNN
-F 3 "~" H 5450 3000 50  0001 C CNN
-	1    5450 3000
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	5200 3000 5200 2600
-Wire Wire Line
-	5200 2600 5150 2600
-Wire Wire Line
-	5200 3000 5250 3000
 Wire Wire Line
 	5450 3300 5450 3500
 Connection ~ 5450 3500
-Connection ~ 5200 2600
 Wire Wire Line
 	5900 2650 5900 2600
 Wire Wire Line
@@ -1551,7 +1424,7 @@ Wire Wire Line
 	5900 3500 5900 2950
 Connection ~ 5900 3500
 Wire Wire Line
-	4700 3500 5450 3500
+	4700 3500 5250 3500
 Wire Wire Line
 	6050 2600 6050 2450
 Wire Wire Line
@@ -1562,19 +1435,6 @@ Wire Wire Line
 	5750 2350 5750 900 
 Wire Wire Line
 	5400 900  5750 900 
-Wire Wire Line
-	5200 2600 5400 2600
-Wire Wire Line
-	5450 2700 5450 2650
-Wire Wire Line
-	5450 3500 5550 3500
-Wire Wire Line
-	5450 2650 5550 2650
-Wire Wire Line
-	5550 2650 5550 3500
-Connection ~ 5550 3500
-Wire Wire Line
-	5550 3500 5750 3500
 Wire Wire Line
 	5700 2600 5750 2600
 Wire Wire Line
@@ -1589,4 +1449,126 @@ Wire Wire Line
 	5750 3500 5900 3500
 Wire Wire Line
 	5900 3550 5900 3500
+$Comp
+L Device:D_Schottky_Dual_CommonCathode_AKA_Parallel D5
+U 1 1 623D1B51
+P 5350 3100
+F 0 "D5" V 5396 2912 50  0000 R CNN
+F 1 "." V 5305 2912 50  0000 R CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 5400 3100 50  0001 C CNN
+F 3 "~" H 5400 3100 50  0001 C CNN
+	1    5350 3100
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5150 2600 5350 2600
+Wire Wire Line
+	5450 3500 5750 3500
+Wire Wire Line
+	5250 3500 5250 3300
+Connection ~ 5250 3500
+Wire Wire Line
+	5250 3500 5450 3500
+Wire Wire Line
+	5350 2900 5350 2600
+Connection ~ 5350 2600
+Wire Wire Line
+	5350 2600 5400 2600
+Wire Wire Line
+	6950 2450 7000 2450
+$Comp
+L Device:D_Schottky_Dual_CommonCathode_AKA_Parallel D6
+U 1 1 62449FB8
+P 7000 2900
+F 0 "D6" V 7100 3050 50  0000 R CNN
+F 1 "." V 6955 2712 50  0000 R CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 7050 2900 50  0001 C CNN
+F 3 "~" H 7050 2900 50  0001 C CNN
+	1    7000 2900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Schottky_Dual_CommonCathode_AKA_Parallel D7
+U 1 1 6246889C
+P 7350 2900
+F 0 "D7" V 7450 2850 50  0000 R CNN
+F 1 "." V 7305 2712 50  0000 R CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 7400 2900 50  0001 C CNN
+F 3 "~" H 7400 2900 50  0001 C CNN
+	1    7350 2900
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6900 3100 6900 3150
+Wire Wire Line
+	6900 3150 7100 3150
+Wire Wire Line
+	7100 3150 7100 3100
+Wire Wire Line
+	7100 3150 7250 3150
+Wire Wire Line
+	7250 3150 7250 3100
+Connection ~ 7100 3150
+Wire Wire Line
+	7250 3150 7450 3150
+Wire Wire Line
+	7450 3150 7450 3100
+Connection ~ 7250 3150
+Wire Wire Line
+	7450 3150 7950 3150
+Connection ~ 7450 3150
+$Comp
+L Device:D_Schottky_Dual_CommonCathode_AKA_Parallel D9
+U 1 1 6251F7F5
+P 7600 2550
+F 0 "D9" V 7700 2500 50  0000 R CNN
+F 1 "." V 7555 2362 50  0000 R CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 7650 2550 50  0001 C CNN
+F 3 "~" H 7650 2550 50  0001 C CNN
+	1    7600 2550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7350 2700 7350 2650
+Wire Wire Line
+	7350 2650 7400 2650
+Wire Wire Line
+	7000 2450 7000 2700
+Connection ~ 7950 3150
+Wire Wire Line
+	7950 2900 7950 3150
+Wire Wire Line
+	7950 3150 7950 3200
+Wire Wire Line
+	7800 2550 7950 2550
+Wire Wire Line
+	7400 2450 7000 2450
+Connection ~ 7000 2450
+Wire Wire Line
+	7350 2650 7350 2350
+Wire Wire Line
+	7350 2350 6950 2350
+Connection ~ 7350 2650
+$Comp
+L Device:R_Potentiometer RV1
+U 1 1 626B1528
+P 4550 3900
+F 0 "RV1" H 4480 3854 50  0000 R CNN
+F 1 "." H 4480 3945 50  0000 R CNN
+F 2 "pwm_module:SP3-4" H 4550 3900 50  0001 C CNN
+F 3 "~" H 4550 3900 50  0001 C CNN
+	1    4550 3900
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R_Potentiometer RV2
+U 1 1 626B1F80
+P 4550 4700
+F 0 "RV2" H 4480 4654 50  0000 R CNN
+F 1 "." H 4480 4745 50  0000 R CNN
+F 2 "pwm_module:SP3-4" H 4550 4700 50  0001 C CNN
+F 3 "~" H 4550 4700 50  0001 C CNN
+	1    4550 4700
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC
